@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Únete como domiciliario — Skipfee</title>
+<meta name="description" content="Regístrate como domiciliario de Skipfee en Medellín. Pago por domicilio entregado, horarios flexibles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mint: #56DC85;
+    --mint-dark: #2FB868;
+    --navy: #0B1E31;
+    --navy-soft: #16324D;
+    --bg: #F5FAF7;
+    --card: #FFFFFF;
+    --border: #E1EAE4;
+    --muted: #5C6B66;
+    --danger: #D14343;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--navy);
+    line-height: 1.5;
+  }
+  header {
+    background: var(--navy);
+    color: #fff;
+    padding: 22px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .header-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo-mark {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: var(--mint);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; color: var(--navy); font-size: 18px;
+    flex-shrink: 0;
+  }
+  header h1 { font-size: 17px; margin: 0; font-weight: 700; }
+  header p { margin: 2px 0 0; font-size: 12.5px; color: #B8C6D6; }
+
+  main { max-width: 720px; margin: 0 auto; padding: 20px 20px 80px; }
+
+  .hero {
+    background: linear-gradient(135deg, var(--mint) 0%, var(--mint-dark) 100%);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    color: var(--navy);
+    margin-bottom: 22px;
+  }
+  .hero h2 { margin: 0 0 8px; font-size: 22px; }
+  .hero p { margin: 0; font-size: 14px; opacity: 0.85; }
+  .hero .pill {
+    display: inline-block; margin-top: 12px;
+    background: rgba(11,30,49,0.12);
+    padding: 6px 12px; border-radius: 999px;
+    font-size: 13px; font-weight: 700;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .card h3 {
+    margin: 0 0 4px;
+    font-size: 15px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card h3 .num {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--navy); color: #fff;
+    font-size: 12px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .card .hint { font-size: 12.5px; color: var(--muted); margin: 0 0 14px 30px; }
+
+  .field { margin-bottom: 14px; }
+  .field label {
+    display: block; font-size: 13px; font-weight: 600;
+    margin-bottom: 5px; color: var(--navy-soft);
+  }
+  .field .req { color: var(--danger); }
+  input[type=text], input[type=tel], input[type=email], input[type=date], select {
+    width: 100%; padding: 11px 12px; border-radius: 10px;
+    border: 1.5px solid var(--border); font-size: 14.5px;
+    font-family: inherit; background: #fff; color: var(--navy);
+  }
+  input:focus, select:focus { outline: none; border-color: var(--mint-dark); }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 480px) { .row2 { grid-template-columns: 1fr; } }
+
+  .choice-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+  }
+  @media (max-width: 480px) { .choice-grid { grid-template-columns: repeat(2, 1fr); } }
+  .choice {
+    border: 1.5px solid var(--border); border-radius: 10px;
+    padding: 10px 6px; text-align: center; cursor: pointer;
+    font-size: 13px; font-weight: 600; color: var(--muted);
+    user-select: none;
+  }
+  .choice input { display: none; }
+  .choice.active {
+    border-color: var(--mint-dark);
+    background: rgba(86,220,133,0.12);
+    color: var(--navy);
+  }
+  .choice .ic { display: block; font-size: 20px; margin-bottom: 4px; }
+
+  .vehicle-extra { display: none; margin-top: 12px; }
+  .vehicle-extra.show { display: block; }
+
+  .days-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .day-chip {
+    border: 1.5px solid var(--border); border-radius: 999px;
+    padding: 8px 14px; font-size: 13px; font-weight: 600;
+    cursor: pointer; color: var(--muted); user-select: none;
+  }
+  .day-chip input { display: none; }
+  .day-chip.active { border-color: var(--mint-dark); background: rgba(86,220,133,0.12); color: var(--navy); }
+
+  .checkbox-row {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 12px; border-radius: 10px; background: #F3F8F4;
+    margin-bottom: 10px; font-size: 13px; color: var(--navy-soft);
+    cursor: pointer;
+  }
+  .checkbox-row input { margin-top: 2px; flex-shrink: 0; width: 17px; height: 17px; }
+  .checkbox-row.locked { opacity: 0.5; }
+
+  .agreement-box {
+    max-height: 260px; overflow-y: auto;
+    border: 1.5px solid var(--border); border-radius: 10px;
+    padding: 14px 16px; font-size: 12.5px; color: var(--navy-soft);
+    background: #FBFDFB; margin-bottom: 12px;
+  }
+  .agreement-box h4 { font-size: 13px; margin: 14px 0 4px; color: var(--navy); }
+  .agreement-box h4:first-child { margin-top: 0; }
+  .agreement-box p { margin: 0 0 8px; }
+  .scroll-note {
+    font-size: 11.5px; color: var(--muted); text-align: center;
+    margin: -6px 0 12px;
+  }
+  .scroll-note.done { color: var(--mint-dark); font-weight: 700; }
+
+  .sig-field input { font-style: italic; }
+  .sig-ok { color: var(--mint-dark); font-size: 12px; font-weight: 700; margin-top: 4px; }
+  .sig-bad { color: var(--danger); font-size: 12px; font-weight: 700; margin-top: 4px; }
+
+  button.submit {
+    width: 100%; padding: 16px; border: none; border-radius: 12px;
+    background: var(--navy); color: #fff; font-size: 15.5px; font-weight: 700;
+    cursor: pointer; font-family: inherit;
+  }
+  button.submit:disabled { background: #B9C3CC; cursor: not-allowed; }
+  button.submit:not(:disabled):hover { background: var(--navy-soft); }
+
+  .err-banner {
+    background: #FCEAEA; border: 1px solid #F0BFBF; color: var(--danger);
+    padding: 10px 14px; border-radius: 10px; font-size: 13px; margin-bottom: 14px;
+    display: none;
+  }
+  .err-banner.show { display: block; }
+
+  .draft-note {
+    text-align: center; font-size: 12px; color: var(--muted); margin: 6px 0 18px;
+  }
+
+  footer {
+    text-align: center; font-size: 11.5px; color: var(--muted);
+    padding: 20px; max-width: 720px; margin: 0 auto;
+  }
+
+  /* Success screen */
+  #successScreen { display: none; max-width: 560px; margin: 40px auto; padding: 0 20px 60px; text-align: center; }
+  #successScreen .check {
+    width: 64px; height: 64px; border-radius: 50%; background: var(--mint);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;
+    font-size: 30px; color: var(--navy);
+  }
+  #successScreen h2 { margin: 0 0 8px; }
+  #successScreen .radicado {
+    display: inline-block; background: var(--navy); color: var(--mint);
+    font-weight: 800; letter-spacing: 0.5px; padding: 10px 18px;
+    border-radius: 10px; margin: 12px 0 20px; font-size: 16px;
+  }
+  #successScreen .steps { text-align: left; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin-bottom: 18px; }
+  #successScreen .steps li { margin-bottom: 8px; font-size: 13.5px; color: var(--navy-soft); }
+  .btn-secondary {
+    display: inline-block; padding: 12px 18px; border-radius: 10px;
+    border: 1.5px solid var(--border); background: #fff; color: var(--navy);
+    font-weight: 700; font-size: 13.5px; cursor: pointer; font-family: inherit;
+    margin: 4px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-mark">S</div>
+    <div>
+      <h1>Skipfee Domiciliarios</h1>
+      <p>Regístrate y empieza a entregar en Medellín</p>
+    </div>
+  </div>
+</header>
+
+<main id="formScreen">
+  <div class="hero">
+    <h2>Gana entregando pedidos con Skipfee</h2>
+    <p>Horarios flexibles, aceptas los domicilios que quieras, las propinas son 100% tuyas.</p>
+    <span class="pill">$10.000 COP por domicilio entregado con éxito</span>
+  </div>
+
+  <div class="err-banner" id="errBanner"></div>
+
+  <form id="applyForm" novalidate>
+
+    <div class="card">
+      <h3><span class="num">1</span> Datos personales</h3>
+      <p class="hint">Como aparecen en tu documento de identidad.</p>
+      <div class="field">
+        <label>Nombre completo <span class="req">*</span></label>
+        <input type="text" id="fullName" required autocomplete="name">
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label>Tipo de documento <span class="req">*</span></label>
+          <select id="documentType" required>
+            <option value="">Selecciona…</option>
+            <option value="CC">Cédula de ciudadanía</option>
+            <option value="CE">Cédula de extranjería</option>
+            <option value="PPT">Permiso por Protección Temporal</option>
+            <option value="PASAPORTE">Pasaporte</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Número de documento <span class="req">*</span></label>
+          <input type="text" id="documentNumber" required inputmode="numeric">
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label>Fecha de nacimiento</label>
+          <input type="date" id="birthDate">
+        </div>
+        <div class="field">
+          <label>Celular (WhatsApp) <span class="req">*</span></label>
+          <input type="tel" id="phone" required placeholder="300 000 0000" autocomplete="tel">
+        </div>
+      </div>
+      <div class="field">
+        <label>Correo electrónico</label>
+        <input type="email" id="email" placeholder="tucorreo@ejemplo.com" autocomplete="email">
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label>Dirección</label>
+          <input type="text" id="address" placeholder="Cl 10 # 20-30">
+        </div>
+        <div class="field">
+          <label>Barrio</label>
+          <input type="text" id="neighborhood">
+        </div>
+      </div>
+      <div class="field">
+        <label>Ciudad</label>
+        <input type="text" id="city" value="Medellín">
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="num">2</span> Vehículo</h3>
+      <p class="hint">Selecciona cómo vas a entregar los domicilios.</p>
+      <div class="choice-grid" id="vehicleChoices">
+        <label class="choice" data-value="bici"><span class="ic">🚲</span>Bicicleta<input type="radio" name="vehicleType"></label>
+        <label class="choice" data-value="moto"><span class="ic">🏍️</span>Moto<input type="radio" name="vehicleType"></label>
+        <label class="choice" data-value="carro"><span class="ic">🚗</span>Carro<input type="radio" name="vehicleType"></label>
+        <label class="choice" data-value="a_pie"><span class="ic">🚶</span>A pie<input type="radio" name="vehicleType"></label>
+      </div>
+
+      <div class="vehicle-extra" id="motoCarroExtra">
+        <div class="row2">
+          <div class="field">
+            <label>Placa <span class="req">*</span></label>
+            <input type="text" id="plate" placeholder="ABC12D">
+          </div>
+          <div class="field">
+            <label>N° de licencia de conducción <span class="req">*</span></label>
+            <input type="text" id="licenseNumber">
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label>Vencimiento SOAT <span class="req">*</span></label>
+            <input type="date" id="soatExpiry">
+          </div>
+          <div class="field" id="tecnoField">
+            <label>Vencimiento tecnomecánica</label>
+            <input type="date" id="tecnomecanicaExpiry">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="num">3</span> Disponibilidad</h3>
+      <p class="hint">Marca los días que puedes trabajar.</p>
+      <div class="days-grid" id="daysGrid">
+        <label class="day-chip" data-value="lun">Lun<input type="checkbox"></label>
+        <label class="day-chip" data-value="mar">Mar<input type="checkbox"></label>
+        <label class="day-chip" data-value="mie">Mié<input type="checkbox"></label>
+        <label class="day-chip" data-value="jue">Jue<input type="checkbox"></label>
+        <label class="day-chip" data-value="vie">Vie<input type="checkbox"></label>
+        <label class="day-chip" data-value="sab">Sáb<input type="checkbox"></label>
+        <label class="day-chip" data-value="dom">Dom<input type="checkbox"></label>
+      </div>
+      <div class="field">
+        <label>Franja horaria habitual</label>
+        <select id="timeSlot">
+          <option value="">Selecciona…</option>
+          <option value="manana">Mañana (7am–12m)</option>
+          <option value="tarde">Tarde (12m–6pm)</option>
+          <option value="noche">Noche (6pm–11pm)</option>
+          <option value="todo_dia">Todo el día</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="num">4</span> Salud y contacto de emergencia</h3>
+      <div class="row2">
+        <div class="field">
+          <label>EPS</label>
+          <input type="text" id="eps">
+        </div>
+        <div class="field">
+          <label>ARL (si aplica)</label>
+          <input type="text" id="arl">
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label>Contacto de emergencia — nombre</label>
+          <input type="text" id="emergencyContactName">
+        </div>
+        <div class="field">
+          <label>Contacto de emergencia — teléfono</label>
+          <input type="tel" id="emergencyContactPhone">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="num">5</span> Datos de pago</h3>
+      <p class="hint">Aquí recibirás tus pagos semanales.</p>
+      <div class="row2">
+        <div class="field">
+          <label>Método de pago <span class="req">*</span></label>
+          <select id="paymentMethod" required>
+            <option value="">Selecciona…</option>
+            <option value="nequi">Nequi</option>
+            <option value="daviplata">Daviplata</option>
+            <option value="bancolombia">Cuenta Bancolombia</option>
+            <option value="otro_banco">Otro banco</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Número de cuenta / celular <span class="req">*</span></label>
+          <input type="text" id="paymentAccount" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="num">6</span> Acuerdo de colaboración</h3>
+      <p class="hint">Léelo completo — el botón de aceptar se activa al llegar al final.</p>
+
+      <div class="agreement-box" id="agreementBox">
+        <h4>1. Partes</h4>
+        <p>Este acuerdo se celebra entre <strong>MAMACITA Cacao SAS</strong> (NIT 35-2643447), domicilio en Loma El Tesoro, Cl. 2 Sur #17-34, Santa Elena, Medellín, Antioquia, operadora de la plataforma <strong>Skipfee</strong>, y la persona que se registra como domiciliario a través de este formulario ("el domiciliario").</p>
+
+        <h4>2. Naturaleza de la relación</h4>
+        <p>Este es un acuerdo de colaboración bajo la modalidad de prestación de servicios independientes. No constituye, bajo ninguna circunstancia, un contrato de trabajo ni genera relación laboral, subordinación, ni exclusividad. El domiciliario decide libremente sus horarios, puede rechazar cualquier domicilio ofrecido sin justificación y puede trabajar simultáneamente para otras plataformas o empleadores.</p>
+
+        <h4>3. Pago</h4>
+        <p>El domiciliario recibirá <strong>$10.000 COP por cada domicilio entregado con éxito</strong>. Se considera entregado con éxito cuando el pedido llega al cliente final en el lugar y estado acordado, confirmado desde la app.</p>
+        <p>No se paga por: domicilios cancelados antes de la entrega, pedidos no recogidos en el restaurante, o casos en que la entrega fallida sea atribuible a un error del domiciliario (dirección equivocada por no seguir las instrucciones, pedido dañado por mal manejo, etc.).</p>
+        <p>Las propinas que el cliente entregue directamente al domiciliario son 100% suyas y no hacen parte de esta liquidación.</p>
+
+        <h4>4. Ciclo de pago</h4>
+        <p>La semana de trabajo cierra los domingos a las 11:59pm. El pago de lo acumulado en esa semana se realiza el lunes siguiente al método de pago registrado en este formulario.</p>
+
+        <h4>5. Costos a cargo del domiciliario</h4>
+        <p>Corren por cuenta del domiciliario: combustible, mantenimiento del vehículo, plan de datos móviles, SOAT y tecnomecánica (cuando aplique) y su afiliación a salud (EPS) y riesgos laborales (ARL) como trabajador independiente.</p>
+
+        <h4>6. Conducta y normas de tránsito</h4>
+        <p>El domiciliario se compromete a cumplir las normas de tránsito vigentes, portar los documentos de su vehículo al día, y tratar con respeto a los restaurantes aliados y a los clientes. Skipfee puede suspender o retirar el acceso a la plataforma ante conductas fraudulentas, agresivas o que pongan en riesgo a terceros.</p>
+
+        <h4>7. Responsabilidad</h4>
+        <p>El domiciliario es responsable por la pérdida, daño o extravío de pedidos bajo su custodia, así como por multas o comparendos de tránsito en los que incurra durante sus entregas. Skipfee no asume responsabilidad civil, penal o administrativa derivada de la conducción del domiciliario.</p>
+
+        <h4>8. Uso de datos de clientes</h4>
+        <p>El domiciliario solo puede usar los datos de contacto de los clientes (dirección, teléfono) para efectos de la entrega del pedido en curso. Está prohibido contactar clientes fuera de la plataforma, guardar sus datos, o usarlos con fines distintos a la entrega.</p>
+
+        <h4>9. Terminación</h4>
+        <p>Cualquiera de las partes puede terminar esta colaboración en cualquier momento y sin necesidad de justificar la causa, sin que ello genere indemnización alguna, dado que no existe relación laboral.</p>
+
+        <h4>10. Datos personales</h4>
+        <p><strong>MAMACITA Cacao SAS</strong> es responsable del tratamiento de los datos personales suministrados en este formulario, conforme a la Ley 1581 de 2012 y sus decretos reglamentarios. Los datos se usan exclusivamente para la gestión del vínculo con el domiciliario (pagos, contacto, verificación de documentos) y no se comparten con terceros distintos a los necesarios para operar la plataforma.</p>
+
+        <h4>11. Firma electrónica</h4>
+        <p>De conformidad con la Ley 527 de 1999, el domiciliario acepta que escribir su nombre completo como firma electrónica al final de este formulario tiene la misma validez y efectos jurídicos que una firma manuscrita, y constituye su aceptación plena de este acuerdo.</p>
+
+        <p style="margin-top:16px; font-weight:700; color:var(--mint-dark);">— Fin del acuerdo —</p>
+      </div>
+      <div class="scroll-note" id="scrollNote">↓ Desliza hasta el final para poder aceptar ↓</div>
+
+      <label class="checkbox-row locked" id="rowAgreement">
+        <input type="checkbox" id="agreementAccepted" disabled>
+        <span>He leído y acepto el Acuerdo de Colaboración completo con MAMACITA Cacao SAS.</span>
+      </label>
+      <label class="checkbox-row">
+        <input type="checkbox" id="consentData">
+        <span>Autorizo el tratamiento de mis datos personales conforme a la Ley 1581 de 2012, según lo descrito en la cláusula 10.</span>
+      </label>
+      <label class="checkbox-row">
+        <input type="checkbox" id="consentContract">
+        <span>Entiendo que esto es un acuerdo de prestación de servicios independientes, sin relación laboral ni exclusividad.</span>
+      </label>
+      <label class="checkbox-row">
+        <input type="checkbox" id="consentTruth">
+        <span>Declaro que la información suministrada en este formulario es veraz y completa.</span>
+      </label>
+
+      <div class="field sig-field" style="margin-top:14px;">
+        <label>Firma electrónica — escribe tu nombre completo tal como en el paso 1 <span class="req">*</span></label>
+        <input type="text" id="agreementSignature" placeholder="Escribe tu nombre completo">
+        <div id="sigFeedback"></div>
+      </div>
+    </div>
+
+    <button type="submit" class="submit" id="submitBtn" disabled>Enviar mi solicitud</button>
+    <div class="draft-note" id="draftNote"></div>
+  </form>
+</main>
+
+<div id="successScreen">
+  <div class="check">✓</div>
+  <h2>¡Solicitud enviada!</h2>
+  <p>Guarda este número de radicado:</p>
+  <div class="radicado" id="radicadoOut">SKF-000000</div>
+  <div class="steps">
+    <p style="margin:0 0 10px; font-weight:700;">Próximos pasos</p>
+    <ul>
+      <li>Nuestro equipo revisa tu documentación en los próximos días hábiles.</li>
+      <li>Te contactaremos por el celular o correo que registraste para confirmar tu activación.</li>
+      <li>Una vez activo, recibirás acceso a la app de domiciliarios para empezar a tomar pedidos.</li>
+    </ul>
+  </div>
+  <button class="btn-secondary" id="copyDataBtn">Copiar mis datos</button>
+</div>
+
+<footer>
+  MAMACITA Cacao SAS · NIT 35-2643447 · Loma El Tesoro, Cl. 2 Sur #17-34, Santa Elena, Medellín, Antioquia
+</footer>
+
+<script>
+(function () {
+  const DRAFT_KEY = 'skipfee_domiciliario_draft_v1';
+  const form = document.getElementById('applyForm');
+  const errBanner = document.getElementById('errBanner');
+  const submitBtn = document.getElementById('submitBtn');
+
+  const fieldIds = [
+    'fullName','documentType','documentNumber','birthDate','phone','email',
+    'address','neighborhood','city','plate','licenseNumber','soatExpiry',
+    'tecnomecanicaExpiry','timeSlot','eps','arl','emergencyContactName',
+    'emergencyContactPhone','paymentMethod','paymentAccount','agreementSignature'
+  ];
+
+  let vehicleType = '';
+  let days = new Set();
+
+  // ---- Vehicle choice ----
+  const vehicleChoices = document.querySelectorAll('#vehicleChoices .choice');
+  const motoCarroExtra = document.getElementById('motoCarroExtra');
+  const tecnoField = document.getElementById('tecnoField');
+  vehicleChoices.forEach(el => {
+    el.addEventListener('click', () => {
+      vehicleChoices.forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      vehicleType = el.dataset.value;
+      const needsVehicleDocs = vehicleType === 'moto' || vehicleType === 'carro';
+      motoCarroExtra.classList.toggle('show', needsVehicleDocs);
+      tecnoField.style.display = vehicleType === 'carro' ? 'block' : 'none';
+      saveDraft();
+      updateSubmitState();
+    });
+  });
+
+  // ---- Days ----
+  const dayChips = document.querySelectorAll('#daysGrid .day-chip');
+  dayChips.forEach(el => {
+    el.addEventListener('click', () => {
+      const v = el.dataset.value;
+      if (days.has(v)) { days.delete(v); el.classList.remove('active'); }
+      else { days.add(v); el.classList.add('active'); }
+      saveDraft();
+    });
+  });
+
+  // ---- Agreement scroll gate ----
+  const agreementBox = document.getElementById('agreementBox');
+  const scrollNote = document.getElementById('scrollNote');
+  const rowAgreement = document.getElementById('rowAgreement');
+  const agreementAccepted = document.getElementById('agreementAccepted');
+  let scrolledToEnd = false;
+  agreementBox.addEventListener('scroll', () => {
+    const atEnd = agreementBox.scrollTop + agreementBox.clientHeight >= agreementBox.scrollHeight - 12;
+    if (atEnd && !scrolledToEnd) {
+      scrolledToEnd = true;
+      agreementAccepted.disabled = false;
+      rowAgreement.classList.remove('locked');
+      scrollNote.textContent = '✓ Puedes aceptar el acuerdo';
+      scrollNote.classList.add('done');
+    }
+  });
+
+  // ---- Signature match ----
+  const fullNameInput = document.getElementById('fullName');
+  const sigInput = document.getElementById('agreementSignature');
+  const sigFeedback = document.getElementById('sigFeedback');
+  function signatureMatches() {
+    const a = (fullNameInput.value || '').trim().toLowerCase();
+    const b = (sigInput.value || '').trim().toLowerCase();
+    return a.length > 0 && a === b;
+  }
+  function renderSigFeedback() {
+    if (!sigInput.value) { sigFeedback.innerHTML = ''; return; }
+    if (signatureMatches()) {
+      sigFeedback.innerHTML = '<div class="sig-ok">✓ Coincide con tu nombre</div>';
+    } else {
+      sigFeedback.innerHTML = '<div class="sig-bad">No coincide exactamente con el nombre del paso 1</div>';
+    }
+  }
+  sigInput.addEventListener('input', () => { renderSigFeedback(); updateSubmitState(); saveDraft(); });
+  fullNameInput.addEventListener('input', () => { renderSigFeedback(); updateSubmitState(); saveDraft(); });
+
+  // ---- Submit gate ----
+  const consentIds = ['agreementAccepted','consentData','consentContract','consentTruth'];
+  function allConsentsChecked() {
+    return consentIds.every(id => document.getElementById(id).checked);
+  }
+  function requiredTextFilled() {
+    const req = ['fullName','documentType','documentNumber','phone','paymentMethod','paymentAccount'];
+    const baseOk = req.every(id => (document.getElementById(id).value || '').trim() !== '');
+    if (!vehicleType) return false;
+    if ((vehicleType === 'moto' || vehicleType === 'carro')) {
+      const plate = document.getElementById('plate').value.trim();
+      const license = document.getElementById('licenseNumber').value.trim();
+      const soat = document.getElementById('soatExpiry').value.trim();
+      if (!plate || !license || !soat) return false;
+    }
+    return baseOk;
+  }
+  function updateSubmitState() {
+    const ok = requiredTextFilled() && allConsentsChecked() && signatureMatches();
+    submitBtn.disabled = !ok;
+  }
+  consentIds.forEach(id => document.getElementById(id).addEventListener('change', () => { updateSubmitState(); saveDraft(); }));
+  fieldIds.concat(['paymentMethod']).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', () => { updateSubmitState(); saveDraft(); });
+    if (el) el.addEventListener('change', () => { updateSubmitState(); saveDraft(); });
+  });
+
+  // ---- Draft autosave ----
+  const draftNote = document.getElementById('draftNote');
+  function saveDraft() {
+    try {
+      const data = collectData();
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
+      draftNote.textContent = 'Borrador guardado en este dispositivo';
+    } catch (e) {}
+  }
+  function loadDraft() {
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      fieldIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && data[id] !== undefined) el.value = data[id];
+      });
+      if (data.vehicleType) {
+        const el = document.querySelector('#vehicleChoices .choice[data-value="' + data.vehicleType + '"]');
+        if (el) el.click();
+      }
+      if (Array.isArray(data.days)) {
+        data.days.forEach(v => {
+          const el = document.querySelector('#daysGrid .day-chip[data-value="' + v + '"]');
+          if (el) el.click();
+        });
+      }
+      consentIds.forEach(id => {
+        if (id === 'agreementAccepted') return; // never restore the gated one
+        const el = document.getElementById(id);
+        if (el && data[id]) el.checked = true;
+      });
+      renderSigFeedback();
+      updateSubmitState();
+    } catch (e) {}
+  }
+
+  function collectData() {
+    const d = {};
+    fieldIds.forEach(id => { d[id] = document.getElementById(id).value; });
+    d.vehicleType = vehicleType;
+    d.days = Array.from(days);
+    d.availability = { days: Array.from(days), timeSlot: document.getElementById('timeSlot').value };
+    consentIds.forEach(id => { d[id] = document.getElementById(id).checked; });
+    return d;
+  }
+
+  loadDraft();
+
+  // ---- Submit ----
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errBanner.classList.remove('show');
+    updateSubmitState();
+    if (submitBtn.disabled) return;
+
+    const payload = collectData();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+
+    try {
+      const resp = await fetch('/api/apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const out = await resp.json();
+      if (!resp.ok || !out.ok) {
+        throw new Error(out.error || 'submit_failed');
+      }
+      localStorage.removeItem(DRAFT_KEY);
+      showSuccess(out.radicado, payload);
+    } catch (err) {
+      errBanner.textContent = 'No pudimos enviar tu solicitud. Verifica tu conexión e intenta de nuevo.';
+      errBanner.classList.add('show');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar mi solicitud';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+
+  function showSuccess(radicado, payload) {
+    document.getElementById('formScreen').style.display = 'none';
+    document.getElementById('successScreen').style.display = 'block';
+    document.getElementById('radicadoOut').textContent = radicado;
+    window.scrollTo({ top: 0 });
+
+    document.getElementById('copyDataBtn').addEventListener('click', () => {
+      const text = 'Radicado: ' + radicado + '\nNombre: ' + payload.fullName + '\nDocumento: ' + payload.documentType + ' ' + payload.documentNumber + '\nTeléfono: ' + payload.phone;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyDataBtn');
+        const old = btn.textContent;
+        btn.textContent = '¡Copiado!';
+        setTimeout(() => { btn.textContent = old; }, 1500);
+      });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
