@@ -126,18 +126,22 @@
   async function tryLoad(key) {
     const resp = await fetch('/api/admin?key=' + encodeURIComponent(key));
     const out = await resp.json().catch(() => ({}));
-    if (!resp.ok || !out.ok) return { rows: null, error: out.error || 'error' };
-    return { rows: out.rows, error: null };
+    if (!resp.ok || !out.ok) return { rows: null, error: out.error || 'error', detail: out.detail || '' };
+    return { rows: out.rows, error: null, detail: '' };
   }
 
   async function attemptLogin(key) {
-    const { rows, error } = await tryLoad(key);
+    const { rows, error, detail } = await tryLoad(key);
     if (rows === null) {
       pwErr.textContent = error === 'admin_password_not_set'
         ? 'ADMIN_PASSWORD no está configurado en Vercel todavía (Environments → Production → agrega la variable y redeploy).'
         : error === 'server_not_configured'
         ? 'Faltan las variables de Supabase en Vercel (SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY).'
-        : 'Clave incorrecta.';
+        : error === 'fetch_failed'
+        ? 'La clave es correcta, pero Supabase rechazó la consulta — probablemente la tabla skipfee_applications no existe todavía. Corre schema.sql en el SQL Editor de Supabase.' + (detail ? ' Detalle: ' + detail : '')
+        : error === 'unauthorized'
+        ? 'Clave incorrecta.'
+        : 'Error inesperado (' + error + ').';
       pwErr.style.display = 'block';
       try { sessionStorage.removeItem(SESSION_KEY); } catch (e) {}
       return;

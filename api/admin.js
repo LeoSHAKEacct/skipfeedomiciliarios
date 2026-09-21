@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
     if (!resp.ok) {
       const detail = await resp.text();
       console.error('supabase_fetch_failed', resp.status, detail);
-      res.status(502).json({ ok: false, error: 'fetch_failed' });
+      res.status(502).json({ ok: false, error: 'fetch_failed', detail: detail.slice(0, 500) });
       return;
     }
     const rows = await resp.json();
