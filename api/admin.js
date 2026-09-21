@@ -6,7 +6,12 @@ module.exports = async (req, res) => {
 
   const key = req.query.key || req.headers['x-admin-key'];
   const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
-  if (!ADMIN_PASSWORD || !key || key !== ADMIN_PASSWORD) {
+  if (!ADMIN_PASSWORD) {
+    // Distinct error so a missing env var doesn't look like a wrong password.
+    res.status(500).json({ ok: false, error: 'admin_password_not_set' });
+    return;
+  }
+  if (!key || key !== ADMIN_PASSWORD) {
     res.status(401).json({ ok: false, error: 'unauthorized' });
     return;
   }

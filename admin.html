@@ -125,15 +125,19 @@
 
   async function tryLoad(key) {
     const resp = await fetch('/api/admin?key=' + encodeURIComponent(key));
-    if (!resp.ok) return null;
-    const out = await resp.json();
-    if (!out.ok) return null;
-    return out.rows;
+    const out = await resp.json().catch(() => ({}));
+    if (!resp.ok || !out.ok) return { rows: null, error: out.error || 'error' };
+    return { rows: out.rows, error: null };
   }
 
   async function attemptLogin(key) {
-    const rows = await tryLoad(key);
+    const { rows, error } = await tryLoad(key);
     if (rows === null) {
+      pwErr.textContent = error === 'admin_password_not_set'
+        ? 'ADMIN_PASSWORD no está configurado en Vercel todavía (Environments → Production → agrega la variable y redeploy).'
+        : error === 'server_not_configured'
+        ? 'Faltan las variables de Supabase en Vercel (SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY).'
+        : 'Clave incorrecta.';
       pwErr.style.display = 'block';
       try { sessionStorage.removeItem(SESSION_KEY); } catch (e) {}
       return;
