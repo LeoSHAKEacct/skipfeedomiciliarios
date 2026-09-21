@@ -1,6 +1,6 @@
 # Skipfee Domiciliarios
 
-Formulario público de registro de domiciliarios para Skipfee (operado por MAMACITA Cacao SAS).
+Formulario público de registro de domiciliarios para Skipfee (operado por SHAKEapp Inc.).
 Sitio estático (`index.html`) + una función serverless (`api/apply.js`) que valida la solicitud,
 la guarda en Supabase y envía una notificación por correo con cada registro nuevo.
 
