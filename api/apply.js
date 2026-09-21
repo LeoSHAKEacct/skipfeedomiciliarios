@@ -15,22 +15,34 @@ function makeRadicado() {
   return `SKF-${time}${rand}`;
 }
 
+function norm(s) {
+  return String(s || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 async function notifyEmail(row) {
   const key = process.env.WEB3FORMS_KEY;
   if (!key) return;
 
+  const avail = row.availability || {};
   const summary = [
     `Radicado: ${row.radicado}`,
     `Nombre: ${row.full_name}`,
     `Documento: ${row.document_type} ${row.document_number}`,
+    `Nacimiento: ${row.birth_date || '-'}`,
     `Telefono: ${row.phone}`,
     `Email: ${row.email || '-'}`,
-    `Direccion: ${row.address || '-'} (${row.neighborhood || '-'}, ${row.city || '-'})`,
-    `Vehiculo: ${row.vehicle_type}${row.plate ? ' - placa ' + row.plate : ''}`,
-    `Disponibilidad: ${row.availability ? JSON.stringify(row.availability) : '-'}`,
+    `Ciudad/zona: ${row.city || '-'} — ${row.neighborhood || '-'}`,
+    `Vehiculo: ${row.vehicle_type}${row.plate ? ' - placa ' + row.plate : ''}${row.vehicle_model ? ' - ' + row.vehicle_model : ''}`,
+    `Licencia vence: ${row.license_expiry || '-'}  SOAT vence: ${row.soat_expiry || '-'}  Tecno vence: ${row.tecnomecanica_expiry || '-'}`,
+    `Disponibilidad: dias ${(avail.days || []).join(', ') || '-'} · franjas ${(avail.shifts || []).join(', ') || '-'} · ${avail.weeklyHours || '-'} · ${avail.priorExperience || '-'}`,
     `EPS: ${row.eps || '-'}  ARL: ${row.arl || '-'}`,
     `Contacto emergencia: ${row.emergency_contact_name || '-'} (${row.emergency_contact_phone || '-'})`,
-    `Pago: ${row.payment_method} - ${row.payment_account}`,
+    `Pago: ${row.payment_method} - ${row.payment_account}${row.payment_account_holder ? ' (titular: ' + row.payment_account_holder + ')' : ''}`,
     `Firma electronica: ${row.agreement_signature}`,
     `Aceptado: ${row.agreement_accepted_at}`,
   ].join('\n');
@@ -74,13 +86,17 @@ module.exports = async (req, res) => {
     }
   }
 
-  if (!data.agreementAccepted || !data.consentData || !data.consentContract || !data.consentTruth) {
+  if (!data.agreementAccepted || !data.consentData || !data.consentTruth) {
     res.status(400).json({ ok: false, error: 'agreement_not_accepted' });
     return;
   }
 
-  const signatureOk =
-    String(data.agreementSignature).trim().toLowerCase() === String(data.fullName).trim().toLowerCase();
+  if ((data.vehicleType === 'moto' || data.vehicleType === 'carro') && (!data.plate || !data.licenseExpiry || !data.soatExpiry)) {
+    res.status(400).json({ ok: false, error: 'missing_vehicle_docs' });
+    return;
+  }
+
+  const signatureOk = norm(data.agreementSignature) === norm(data.fullName) && norm(data.fullName).includes(' ');
   if (!signatureOk) {
     res.status(400).json({ ok: false, error: 'signature_mismatch' });
     return;
@@ -105,12 +121,12 @@ module.exports = async (req, res) => {
     birth_date: data.birthDate || null,
     phone: String(data.phone).trim(),
     email: data.email ? String(data.email).trim() : null,
-    address: data.address || null,
-    neighborhood: data.neighborhood || null,
     city: data.city || 'Medellín',
+    neighborhood: data.neighborhood || null,
     vehicle_type: data.vehicleType,
     plate: data.plate || null,
-    license_number: data.licenseNumber || null,
+    vehicle_model: data.vehicleModel || null,
+    license_expiry: data.licenseExpiry || null,
     soat_expiry: data.soatExpiry || null,
     tecnomecanica_expiry: data.tecnomecanicaExpiry || null,
     availability: data.availability || null,
@@ -120,6 +136,7 @@ module.exports = async (req, res) => {
     emergency_contact_phone: data.emergencyContactPhone || null,
     payment_method: data.paymentMethod,
     payment_account: String(data.paymentAccount).trim(),
+    payment_account_holder: data.paymentAccountHolder || null,
     agreement_accepted: true,
     agreement_signature: String(data.agreementSignature).trim(),
     agreement_accepted_at: nowIso,

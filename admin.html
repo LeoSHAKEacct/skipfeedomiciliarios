@@ -240,25 +240,28 @@
   function showDetail(r) {
     const avail = r.availability || {};
     const days = Array.isArray(avail.days) ? avail.days.join(', ') : '-';
+    const shifts = Array.isArray(avail.shifts) ? avail.shifts.join(' / ') : '-';
     document.getElementById('detailCard').innerHTML =
       '<button class="close" id="closeDetail">&times;</button>' +
       '<h2>' + escapeHtml(r.full_name) + '</h2>' +
       '<div class="sub" style="color:var(--muted);font-size:13px;">' + r.radicado + ' · ' + fmtDate(r.created_at) + '</div>' +
       '<div class="detail-grid">' +
         field('Documento', r.document_type + ' ' + r.document_number) +
+        field('Nacimiento', r.birth_date || '-') +
         field('Teléfono', r.phone) +
         field('Email', r.email || '-') +
-        field('Ciudad', r.city || '-') +
-        field('Dirección', (r.address || '-') + (r.neighborhood ? ' · ' + r.neighborhood : '')) +
-        field('Vehículo', vehicleLabels[r.vehicle_type] || r.vehicle_type) +
+        field('Ciudad / zona', (r.city || '-') + ' · ' + (r.neighborhood || '-')) +
+        field('Vehículo', (vehicleLabels[r.vehicle_type] || r.vehicle_type) + (r.vehicle_model ? ' · ' + r.vehicle_model : '')) +
         field('Placa', r.plate || '-') +
-        field('Licencia', r.license_number || '-') +
+        field('Licencia vence', r.license_expiry || '-') +
         field('SOAT vence', r.soat_expiry || '-') +
         field('Tecnomecánica vence', r.tecnomecanica_expiry || '-') +
-        field('Disponibilidad', days + (avail.timeSlot ? ' · ' + avail.timeSlot : '')) +
+        field('Días', days) +
+        field('Franjas', shifts) +
+        field('Horas/semana · experiencia', (avail.weeklyHours || '-') + ' · ' + (avail.priorExperience || '-')) +
         field('EPS / ARL', (r.eps || '-') + ' / ' + (r.arl || '-')) +
         field('Contacto emergencia', (r.emergency_contact_name || '-') + ' · ' + (r.emergency_contact_phone || '-')) +
-        field('Pago', (paymentLabels[r.payment_method] || r.payment_method) + ' — ' + r.payment_account) +
+        field('Pago', (r.payment_method || '-') + ' — ' + (r.payment_account || '-') + (r.payment_account_holder ? ' (titular: ' + r.payment_account_holder + ')' : '')) +
         field('Firma electrónica', r.agreement_signature) +
         field('Acuerdo aceptado', fmtDate(r.agreement_accepted_at)) +
       '</div>';

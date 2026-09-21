@@ -3,695 +3,735 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Únete como domiciliario — Skipfee</title>
+<title>Domiciliarios Skipfee</title>
 <meta name="description" content="Regístrate como domiciliario de Skipfee en Medellín. Pago por domicilio entregado, horarios flexibles.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
 <style>
-  :root {
-    --mint: #56DC85;
-    --mint-dark: #2FB868;
-    --navy: #0B1E31;
-    --navy-soft: #16324D;
-    --bg: #F5FAF7;
-    --card: #FFFFFF;
-    --border: #E1EAE4;
-    --muted: #5C6B66;
-    --danger: #D14343;
-    --radius: 16px;
+:root{
+  --ground:#f2f7f3; --surface:#ffffff; --surface-2:#eaf2ec; --line:#d9e4dc; --line-soft:#e7efe9;
+  --text:#0b1e31; --text-2:#4c5a69; --text-3:#7e8b95;
+  --green:#56dc85; --green-ink:#0e6f39; --green-deep:#003b11; --green-wash:#e2f8ea;
+  --navy:#0b1e31; --on-navy:#e9f4ee; --danger:#c0392b; --danger-wash:#fdecea;
+  --shadow:0 1px 2px rgba(11,30,49,.05), 0 8px 24px -12px rgba(11,30,49,.18);
+  --shadow-lift:0 2px 4px rgba(11,30,49,.06), 0 18px 40px -18px rgba(11,30,49,.32);
+  --display:"Bricolage Grotesque","Hanken Grotesk",system-ui,sans-serif;
+  --ui:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#071320; --surface:#0e2233; --surface-2:#152d40; --line:#1e3a4f; --line-soft:#173044;
+    --text:#e8f3ec; --text-2:#9db2c0; --text-3:#7891a1;
+    --green:#56dc85; --green-ink:#7ceaa6; --green-deep:#00280b; --green-wash:#0f3a24;
+    --navy:#061119; --on-navy:#e9f4ee; --danger:#ff8a7a; --danger-wash:#3a1512;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+    --shadow-lift:0 2px 6px rgba(0,0,0,.5), 0 22px 46px -20px rgba(0,0,0,.8);
   }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: 'Hanken Grotesk', system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--navy);
-    line-height: 1.5;
-  }
-  header {
-    background: var(--navy);
-    color: #fff;
-    padding: 22px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-  .header-inner {
-    max-width: 720px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .logo-mark {
-    width: 38px; height: 38px; border-radius: 10px;
-    background: var(--mint);
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 800; color: var(--navy); font-size: 18px;
-    flex-shrink: 0;
-  }
-  header h1 { font-size: 17px; margin: 0; font-weight: 700; }
-  header p { margin: 2px 0 0; font-size: 12.5px; color: #B8C6D6; }
+}
+:root[data-theme="dark"]{
+  --ground:#071320; --surface:#0e2233; --surface-2:#152d40; --line:#1e3a4f; --line-soft:#173044;
+  --text:#e8f3ec; --text-2:#9db2c0; --text-3:#7891a1;
+  --green:#56dc85; --green-ink:#7ceaa6; --green-deep:#00280b; --green-wash:#0f3a24;
+  --navy:#061119; --on-navy:#e9f4ee; --danger:#ff8a7a; --danger-wash:#3a1512;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+  --shadow-lift:0 2px 6px rgba(0,0,0,.5), 0 22px 46px -20px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--text);font-family:var(--ui);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0}
+:focus-visible{outline:2.5px solid var(--green-ink);outline-offset:2px;border-radius:7px}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:-.025em}
+.tnum{font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
-  main { max-width: 720px; margin: 0 auto; padding: 20px 20px 80px; }
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 
-  .hero {
-    background: linear-gradient(135deg, var(--mint) 0%, var(--mint-dark) 100%);
-    border-radius: var(--radius);
-    padding: 24px 22px;
-    color: var(--navy);
-    margin-bottom: 22px;
-  }
-  .hero h2 { margin: 0 0 8px; font-size: 22px; }
-  .hero p { margin: 0; font-size: 14px; opacity: 0.85; }
-  .hero .pill {
-    display: inline-block; margin-top: 12px;
-    background: rgba(11,30,49,0.12);
-    padding: 6px 12px; border-radius: 999px;
-    font-size: 13px; font-weight: 700;
-  }
+.top{background:var(--navy);color:var(--on-navy)}
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:62px}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.03em}
+.brand .mark{width:27px;height:27px;border-radius:9px;background:var(--green);display:grid;place-items:center;color:var(--green-deep)}
+.brand em{font-style:normal;color:var(--green)}
+.top .who{font-size:12px;color:#8fae9f;text-align:right;line-height:1.3}
 
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-    margin-bottom: 16px;
-  }
-  .card h3 {
-    margin: 0 0 4px;
-    font-size: 15px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .card h3 .num {
-    width: 22px; height: 22px; border-radius: 50%;
-    background: var(--navy); color: #fff;
-    font-size: 12px; display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .card .hint { font-size: 12.5px; color: var(--muted); margin: 0 0 14px 30px; }
+.hero{background:var(--navy);color:var(--on-navy);padding:14px 0 46px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-90px;top:-40px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(86,220,133,.18),transparent 62%)}
+.hero-in{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:34px;align-items:center}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--green)}
+.hero h1{font-size:clamp(30px,4.4vw,46px);line-height:1.04;margin:10px 0 12px;color:#fff}
+.hero p{margin:0;color:#a9c3b6;font-size:16px;max-width:52ch}
+.payblock{background:rgba(255,255,255,.06);border:1px solid rgba(86,220,133,.28);border-radius:20px;padding:20px 26px;text-align:center;min-width:220px}
+.payblock .amt{font-family:var(--display);font-weight:800;font-size:44px;color:var(--green);line-height:1;letter-spacing:-.04em}
+.payblock .per{font-size:13px;color:#a9c3b6;margin-top:6px}
+.payblock .sub{font-size:11.5px;color:#7e9c8c;margin-top:10px;padding-top:10px;border-top:1px dashed rgba(255,255,255,.14)}
 
-  .field { margin-bottom: 14px; }
-  .field label {
-    display: block; font-size: 13px; font-weight: 600;
-    margin-bottom: 5px; color: var(--navy-soft);
-  }
-  .field .req { color: var(--danger); }
-  input[type=text], input[type=tel], input[type=email], input[type=date], select {
-    width: 100%; padding: 11px 12px; border-radius: 10px;
-    border: 1.5px solid var(--border); font-size: 14.5px;
-    font-family: inherit; background: #fff; color: var(--navy);
-  }
-  input:focus, select:focus { outline: none; border-color: var(--mint-dark); }
-  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  @media (max-width: 480px) { .row2 { grid-template-columns: 1fr; } }
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:30px;align-items:start;padding:30px 0 70px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.step{border-bottom:1px solid var(--line-soft);padding:22px 26px 26px}
+.step:last-child{border-bottom:0}
+.step-h{display:flex;align-items:center;gap:11px;margin-bottom:4px}
+.step-n{width:26px;height:26px;border-radius:9px;background:var(--green-wash);color:var(--green-ink);font-family:var(--display);font-weight:700;font-size:13px;display:grid;place-items:center;flex:none}
+.step-h h2{font-size:18px}
+.step > p.hint{margin:0 0 18px 37px;font-size:13px;color:var(--text-3)}
 
-  .choice-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
-  }
-  @media (max-width: 480px) { .choice-grid { grid-template-columns: repeat(2, 1fr); } }
-  .choice {
-    border: 1.5px solid var(--border); border-radius: 10px;
-    padding: 10px 6px; text-align: center; cursor: pointer;
-    font-size: 13px; font-weight: 600; color: var(--muted);
-    user-select: none;
-  }
-  .choice input { display: none; }
-  .choice.active {
-    border-color: var(--mint-dark);
-    background: rgba(86,220,133,0.12);
-    color: var(--navy);
-  }
-  .choice .ic { display: block; font-size: 20px; margin-bottom: 4px; }
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f{display:flex;flex-direction:column;gap:5px;min-width:0}
+.f.full{grid-column:1/-1}
+.f label{font-size:12.5px;font-weight:600;color:var(--text-2)}
+.f label .req{color:var(--green-ink)}
+.f input,.f select,.f textarea{width:100%;height:44px;padding:0 13px;border-radius:11px;border:1.5px solid var(--line);background:var(--surface);outline:0;transition:.12s}
+.f textarea{height:auto;padding:11px 13px;resize:vertical;min-height:70px}
+.f select{appearance:none;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%237e8b95' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--green-ink)}
+.f input::placeholder,.f textarea::placeholder{color:var(--text-3)}
+.f .err{font-size:12px;color:var(--danger);font-weight:600;display:none}
+.f.bad input,.f.bad select,.f.bad textarea{border-color:var(--danger);background:var(--danger-wash)}
+.f.bad .err{display:block}
+.prefix{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:11px;overflow:hidden;background:var(--surface)}
+.prefix:focus-within{border-color:var(--green-ink)}
+.prefix span{padding:0 11px;color:var(--text-3);font-weight:600;border-right:1.5px solid var(--line);height:42px;display:grid;place-items:center;background:var(--surface-2)}
+.prefix input{border:0!important;border-radius:0;height:42px}
 
-  .vehicle-extra { display: none; margin-top: 12px; }
-  .vehicle-extra.show { display: block; }
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;width:0;height:0}
+.opt span{display:flex;align-items:center;gap:7px;padding:9px 14px;border-radius:11px;border:1.5px solid var(--line);font-size:13.5px;font-weight:600;color:var(--text-2);cursor:pointer;transition:.12s;background:var(--surface)}
+.opt span:hover{border-color:var(--text-3)}
+.opt input:checked + span{background:var(--green-wash);border-color:var(--green-ink);color:var(--green-ink)}
+.opt input:focus-visible + span{outline:2.5px solid var(--green-ink);outline-offset:2px}
 
-  .days-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-  .day-chip {
-    border: 1.5px solid var(--border); border-radius: 999px;
-    padding: 8px 14px; font-size: 13px; font-weight: 600;
-    cursor: pointer; color: var(--muted); user-select: none;
-  }
-  .day-chip input { display: none; }
-  .day-chip.active { border-color: var(--mint-dark); background: rgba(86,220,133,0.12); color: var(--navy); }
+.agree-box{border:1.5px solid var(--line);border-radius:14px;background:var(--surface-2);max-height:330px;overflow-y:auto;padding:20px 22px;margin-bottom:6px;scroll-behavior:smooth}
+.agree-box h3{font-size:15.5px;margin:0 0 4px}
+.agree-box .doc-meta{font-size:11.5px;color:var(--text-3);margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.agree-box h4{font-family:var(--display);font-size:13.5px;margin:16px 0 4px;letter-spacing:-.01em}
+.agree-box p{margin:0 0 8px;font-size:13.2px;color:var(--text-2);line-height:1.55}
+.agree-box ul{margin:0 0 8px;padding-left:18px;font-size:13.2px;color:var(--text-2)}
+.agree-box li{margin-bottom:4px}
+.agree-box b{color:var(--text)}
+.agree-end{margin-top:16px;padding-top:12px;border-top:1px dashed var(--line);font-size:12px;color:var(--text-3)}
+.scrollhint{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--text-3);margin-bottom:16px}
+.scrollhint.done{color:var(--green-ink)}
 
-  .checkbox-row {
-    display: flex; align-items: flex-start; gap: 10px;
-    padding: 12px; border-radius: 10px; background: #F3F8F4;
-    margin-bottom: 10px; font-size: 13px; color: var(--navy-soft);
-    cursor: pointer;
-  }
-  .checkbox-row input { margin-top: 2px; flex-shrink: 0; width: 17px; height: 17px; }
-  .checkbox-row.locked { opacity: 0.5; }
+.check{display:flex;gap:11px;align-items:flex-start;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;margin-bottom:9px;cursor:pointer;transition:.12s;background:var(--surface)}
+.check:hover{border-color:var(--text-3)}
+.check.bad{border-color:var(--danger);background:var(--danger-wash)}
+.check input{width:19px;height:19px;margin:1px 0 0;accent-color:var(--green-ink);flex:none;cursor:pointer}
+.check span{font-size:13.2px;color:var(--text-2);line-height:1.5}
+.check b{color:var(--text)}
+.check.locked{opacity:.5;cursor:not-allowed}
+.check.locked input{cursor:not-allowed}
 
-  .agreement-box {
-    max-height: 260px; overflow-y: auto;
-    border: 1.5px solid var(--border); border-radius: 10px;
-    padding: 14px 16px; font-size: 12.5px; color: var(--navy-soft);
-    background: #FBFDFB; margin-bottom: 12px;
-  }
-  .agreement-box h4 { font-size: 13px; margin: 14px 0 4px; color: var(--navy); }
-  .agreement-box h4:first-child { margin-top: 0; }
-  .agreement-box p { margin: 0 0 8px; }
-  .scroll-note {
-    font-size: 11.5px; color: var(--muted); text-align: center;
-    margin: -6px 0 12px;
-  }
-  .scroll-note.done { color: var(--mint-dark); font-weight: 700; }
+.sign{background:var(--surface-2);border-radius:14px;padding:18px;margin-top:6px}
+.sign .f input{font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:.01em;height:52px}
+.sign .stamp{font-size:11.5px;color:var(--text-3);margin-top:9px;line-height:1.5}
 
-  .sig-field input { font-style: italic; }
-  .sig-ok { color: var(--mint-dark); font-size: 12px; font-weight: 700; margin-top: 4px; }
-  .sig-bad { color: var(--danger); font-size: 12px; font-weight: 700; margin-top: 4px; }
+.submit{margin:0;padding:22px 26px 26px}
+.btn{width:100%;height:54px;border-radius:15px;background:var(--green);color:var(--green-deep);font-weight:700;font-size:16px;display:flex;align-items:center;justify-content:center;gap:10px;transition:.15s}
+.btn:hover{filter:brightness(1.06)}
+.btn[disabled]{background:var(--surface-2);color:var(--text-3);cursor:not-allowed;filter:none}
+.btn.ghost{background:var(--surface);border:1.5px solid var(--line);color:var(--text);height:46px;font-size:14.5px}
+.btn.ghost:hover{border-color:var(--text-3);filter:none}
+.submit .note{text-align:center;font-size:12px;color:var(--text-3);margin:11px 0 0}
+.formerr{display:none;align-items:center;gap:9px;background:var(--danger-wash);color:var(--danger);border-radius:12px;padding:12px 14px;font-size:13.2px;font-weight:600;margin-bottom:14px}
+.formerr.on{display:flex}
 
-  button.submit {
-    width: 100%; padding: 16px; border: none; border-radius: 12px;
-    background: var(--navy); color: #fff; font-size: 15.5px; font-weight: 700;
-    cursor: pointer; font-family: inherit;
-  }
-  button.submit:disabled { background: #B9C3CC; cursor: not-allowed; }
-  button.submit:not(:disabled):hover { background: var(--navy-soft); }
+.side{position:sticky;top:20px;display:flex;flex-direction:column;gap:14px}
+.scard{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.scard h3{font-size:15.5px;margin-bottom:12px}
+.li{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--text-2);padding:8px 0;border-bottom:1px solid var(--line-soft)}
+.li:last-child{border-bottom:0;padding-bottom:0}
+.li svg{flex:none;color:var(--green-ink);margin-top:2px}
+.li b{color:var(--text);font-weight:600}
+.scard.dark{background:var(--navy);color:var(--on-navy);border-color:var(--navy)}
+.scard.dark h3{color:#fff}
+.scard.dark .li{color:#a9c3b6;border-color:rgba(255,255,255,.08)}
+.scard.dark .li b{color:#fff}
+.scard.dark .li svg{color:var(--green)}
 
-  .err-banner {
-    background: #FCEAEA; border: 1px solid #F0BFBF; color: var(--danger);
-    padding: 10px 14px; border-radius: 10px; font-size: 13px; margin-bottom: 14px;
-    display: none;
-  }
-  .err-banner.show { display: block; }
+.done-wrap{display:none}
+.done-wrap.on{display:block}
+.form-wrap.off{display:none}
+.done-top{text-align:center;padding:34px 26px 26px;border-bottom:1px solid var(--line-soft)}
+.done-top .tick{width:62px;height:62px;border-radius:50%;background:var(--green-wash);color:var(--green-ink);display:grid;place-items:center;margin:0 auto 16px}
+.done-top h2{font-size:26px;margin-bottom:8px}
+.done-top p{margin:0 auto;color:var(--text-2);max-width:46ch;font-size:14.5px}
+.ref{display:inline-flex;align-items:center;gap:9px;margin-top:16px;background:var(--surface-2);border-radius:999px;padding:9px 18px;font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:.02em}
+.ref small{font-family:var(--ui);font-weight:600;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3)}
+.next{padding:22px 26px}
+.next h3{font-size:14px;letter-spacing:.09em;text-transform:uppercase;color:var(--text-3);margin-bottom:12px}
+.nstep{display:flex;gap:12px;align-items:flex-start;padding:10px 0}
+.nstep .num{width:24px;height:24px;border-radius:8px;background:var(--surface-2);color:var(--text-2);font-family:var(--display);font-weight:700;font-size:12px;display:grid;place-items:center;flex:none}
+.nstep p{margin:0;font-size:13.5px;color:var(--text-2)}
+.nstep b{color:var(--text)}
+.summary{margin:0 26px 20px;background:var(--surface-2);border-radius:14px;padding:16px 18px;font-size:12.6px;color:var(--text-2);white-space:pre-wrap;font-family:ui-monospace,"SF Mono",Menlo,monospace;line-height:1.65;max-height:260px;overflow:auto}
+.done-actions{display:flex;flex-direction:column;gap:9px;padding:0 26px 26px}
 
-  .draft-note {
-    text-align: center; font-size: 12px; color: var(--muted); margin: 6px 0 18px;
-  }
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);z-index:80;background:var(--navy);color:var(--on-navy);padding:12px 18px;border-radius:999px;font-size:13.5px;font-weight:600;box-shadow:var(--shadow-lift);opacity:0;pointer-events:none;transition:.22s}
+.toast.on{opacity:1;transform:translateX(-50%)}
+footer{border-top:1px solid var(--line);padding:22px 0 34px;font-size:12px;color:var(--text-3);line-height:1.6}
+footer b{color:var(--text-2)}
 
-  footer {
-    text-align: center; font-size: 11.5px; color: var(--muted);
-    padding: 20px; max-width: 720px; margin: 0 auto;
-  }
-
-  /* Success screen */
-  #successScreen { display: none; max-width: 560px; margin: 40px auto; padding: 0 20px 60px; text-align: center; }
-  #successScreen .check {
-    width: 64px; height: 64px; border-radius: 50%; background: var(--mint);
-    display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;
-    font-size: 30px; color: var(--navy);
-  }
-  #successScreen h2 { margin: 0 0 8px; }
-  #successScreen .radicado {
-    display: inline-block; background: var(--navy); color: var(--mint);
-    font-weight: 800; letter-spacing: 0.5px; padding: 10px 18px;
-    border-radius: 10px; margin: 12px 0 20px; font-size: 16px;
-  }
-  #successScreen .steps { text-align: left; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin-bottom: 18px; }
-  #successScreen .steps li { margin-bottom: 8px; font-size: 13.5px; color: var(--navy-soft); }
-  .btn-secondary {
-    display: inline-block; padding: 12px 18px; border-radius: 10px;
-    border: 1.5px solid var(--border); background: #fff; color: var(--navy);
-    font-weight: 700; font-size: 13.5px; cursor: pointer; font-family: inherit;
-    margin: 4px;
-  }
+@media (max-width:980px){
+  .cols{grid-template-columns:minmax(0,1fr)}
+  .side{position:static;flex-direction:row;flex-wrap:wrap}
+  .side .scard{flex:1;min-width:250px}
+  .hero-in{grid-template-columns:1fr}
+  .payblock{justify-self:start}
+}
+@media (max-width:620px){
+  .wrap{padding:0 14px}
+  .grid{grid-template-columns:1fr}
+  .step{padding:20px 17px 22px}
+  .submit{padding:20px 17px 22px}
+  .summary,.done-actions{margin-left:17px;margin-right:17px;padding-left:0;padding-right:0}
+  .done-actions{padding:0 17px 22px;margin:0}
+  .summary{padding:14px 15px}
+  .top .who{display:none}
+  .hero{padding-bottom:34px}
+}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="logo-mark">S</div>
-    <div>
-      <h1>Skipfee Domiciliarios</h1>
-      <p>Regístrate y empieza a entregar en Medellín</p>
-    </div>
+<header class="top">
+  <div class="wrap top-in">
+    <div class="brand"><span class="mark"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h11"/><path d="m11 7 5 5-5 5"/><path d="M20 5v14"/></svg></span>Skip<em>fee</em></div>
+    <div class="who">MAMACITA Cacao SAS<br>Medellín, Antioquia</div>
   </div>
 </header>
 
-<main id="formScreen">
-  <div class="hero">
-    <h2>Gana entregando pedidos con Skipfee</h2>
-    <p>Horarios flexibles, aceptas los domicilios que quieras, las propinas son 100% tuyas.</p>
-    <span class="pill">$10.000 COP por domicilio entregado con éxito</span>
+<section class="hero">
+  <div class="wrap hero-in">
+    <div>
+      <p class="eyebrow">Domiciliarios · Medellín</p>
+      <h1>Reparte con Skipfee y cobra por entrega, no por hora.</h1>
+      <p>Tú pones el vehículo y las horas que quieras. Nosotros te mandamos los pedidos de los restaurantes y te pagamos cada semana. Llena el formulario, acepta el acuerdo y quedas en la lista.</p>
+    </div>
+    <div class="payblock">
+      <div class="amt tnum">$10.000</div>
+      <div class="per">por cada domicilio entregado</div>
+      <div class="sub">Pago semanal · las propinas son 100% tuyas</div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap cols">
+  <div>
+    <div class="card form-wrap" id="formWrap">
+      <form id="form" novalidate>
+
+        <div class="step">
+          <div class="step-h"><span class="step-n">1</span><h2>Tus datos</h2></div>
+          <p class="hint">Como aparecen en tu documento. Los usamos para verificarte y para pagarte.</p>
+          <div class="grid">
+            <div class="f full"><label for="nombre">Nombre y apellidos <span class="req">*</span></label><input id="nombre" autocomplete="name" placeholder="Juan Esteban Restrepo"><span class="err">Escribe tu nombre completo.</span></div>
+            <div class="f"><label for="tipoDoc">Tipo de documento <span class="req">*</span></label><select id="tipoDoc"><option value="CC">Cédula de ciudadanía</option><option value="CE">Cédula de extranjería</option><option value="PPT">Permiso por Protección Temporal</option><option value="PEP">PEP</option></select></div>
+            <div class="f"><label for="doc">Número de documento <span class="req">*</span></label><input id="doc" inputmode="numeric" placeholder="1 020 456 789"><span class="err">Escribe tu número de documento (mínimo 6 dígitos).</span></div>
+            <div class="f"><label for="nacimiento">Fecha de nacimiento <span class="req">*</span></label><input id="nacimiento" type="date"><span class="err">Debes ser mayor de 18 años.</span></div>
+            <div class="f"><label for="cel">Celular (WhatsApp) <span class="req">*</span></label><div class="prefix"><span>+57</span><input id="cel" inputmode="tel" placeholder="300 123 4567"></div><span class="err">Un celular colombiano de 10 dígitos que empiece por 3.</span></div>
+            <div class="f full"><label for="correo">Correo electrónico</label><input id="correo" type="email" autocomplete="email" placeholder="tucorreo@gmail.com"><span class="err">Revisa el correo, algo no cuadra.</span></div>
+            <div class="f"><label for="ciudad">Ciudad <span class="req">*</span></label><select id="ciudad"><option>Medellín</option><option>Envigado</option><option>Itagüí</option><option>Sabaneta</option><option>Bello</option><option>La Estrella</option><option>Caldas</option><option>Copacabana</option><option>Rionegro</option></select></div>
+            <div class="f"><label for="zona">Barrio o zona donde te mueves <span class="req">*</span></label><input id="zona" placeholder="El Poblado, Laureles, Belén…"><span class="err">Cuéntanos tu zona.</span></div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-h"><span class="step-n">2</span><h2>Tu vehículo</h2></div>
+          <p class="hint">Si repartes en moto o carro, necesitamos licencia, SOAT y tecnomecánica al día.</p>
+          <div class="f full" style="margin-bottom:14px">
+            <label>¿Con qué repartes? <span class="req">*</span></label>
+            <div class="opts" id="vehOpts">
+              <label class="opt"><input type="radio" name="veh" value="moto" checked><span>🏍 Moto</span></label>
+              <label class="opt"><input type="radio" name="veh" value="bici"><span>🚲 Bicicleta</span></label>
+              <label class="opt"><input type="radio" name="veh" value="carro"><span>🚗 Carro</span></label>
+              <label class="opt"><input type="radio" name="veh" value="a_pie"><span>🚶 A pie</span></label>
+            </div>
+          </div>
+          <div class="grid" id="motorFields">
+            <div class="f"><label for="placa">Placa <span class="req">*</span></label><input id="placa" placeholder="ABC12D" style="text-transform:uppercase"><span class="err">Escribe la placa del vehículo.</span></div>
+            <div class="f"><label for="modelo">Marca y modelo</label><input id="modelo" placeholder="Bajaj Pulsar 150, 2021"></div>
+            <div class="f"><label for="licencia">Licencia de conducción vigente hasta <span class="req">*</span></label><input id="licencia" type="date"><span class="err">Tu licencia debe estar vigente.</span></div>
+            <div class="f"><label for="soat">SOAT vigente hasta <span class="req">*</span></label><input id="soat" type="date"><span class="err">El SOAT debe estar vigente.</span></div>
+            <div class="f full"><label for="tecno">Tecnomecánica vigente hasta</label><input id="tecno" type="date"><span class="err">Revisa la fecha.</span></div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-h"><span class="step-n">3</span><h2>Cuándo puedes repartir</h2></div>
+          <p class="hint">No hay horario fijo ni mínimo de horas. Esto solo nos sirve para repartir los turnos.</p>
+          <div class="f full" style="margin-bottom:14px">
+            <label>Días que te sirven <span class="req">*</span></label>
+            <div class="opts" id="dias">
+              <label class="opt"><input type="checkbox" value="Lun"><span>Lun</span></label>
+              <label class="opt"><input type="checkbox" value="Mar"><span>Mar</span></label>
+              <label class="opt"><input type="checkbox" value="Mié"><span>Mié</span></label>
+              <label class="opt"><input type="checkbox" value="Jue"><span>Jue</span></label>
+              <label class="opt"><input type="checkbox" value="Vie"><span>Vie</span></label>
+              <label class="opt"><input type="checkbox" value="Sáb"><span>Sáb</span></label>
+              <label class="opt"><input type="checkbox" value="Dom"><span>Dom</span></label>
+            </div>
+            <span class="err" id="diasErr">Marca al menos un día.</span>
+          </div>
+          <div class="f full" style="margin-bottom:14px">
+            <label>Franjas <span class="req">*</span></label>
+            <div class="opts" id="franjas">
+              <label class="opt"><input type="checkbox" value="Desayuno (7–10 a. m.)"><span>Desayuno · 7–10 a. m.</span></label>
+              <label class="opt"><input type="checkbox" value="Almuerzo (11 a. m.–3 p. m.)" checked><span>Almuerzo · 11 a. m.–3 p. m.</span></label>
+              <label class="opt"><input type="checkbox" value="Noche (6–11 p. m.)" checked><span>Noche · 6–11 p. m.</span></label>
+              <label class="opt"><input type="checkbox" value="Madrugada (11 p. m.–2 a. m.)"><span>Madrugada · 11 p. m.–2 a. m.</span></label>
+            </div>
+            <span class="err" id="franjasErr">Marca al menos una franja.</span>
+          </div>
+          <div class="grid">
+            <div class="f"><label for="horas">Horas por semana, más o menos</label><select id="horas"><option>Menos de 10</option><option selected>10 a 20</option><option>20 a 35</option><option>Más de 35</option></select></div>
+            <div class="f"><label for="exp">¿Has hecho domicilios antes?</label><select id="exp"><option>No, sería mi primera vez</option><option selected>Sí, menos de un año</option><option>Sí, más de un año</option></select></div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-h"><span class="step-n">4</span><h2>Seguridad y pagos</h2></div>
+          <p class="hint">Te pagamos los lunes por la cuenta que nos dejes aquí.</p>
+          <div class="grid">
+            <div class="f"><label for="eps">EPS a la que estás afiliado <span class="req">*</span></label><input id="eps" placeholder="Sura, Savia Salud, Nueva EPS…"><span class="err">Necesitamos tu EPS.</span></div>
+            <div class="f"><label for="arl">¿Tienes ARL vigente?</label><select id="arl"><option>Sí, estoy afiliado</option><option selected>Todavía no, la voy a activar</option></select></div>
+            <div class="f"><label for="emerNombre">Contacto de emergencia <span class="req">*</span></label><input id="emerNombre" placeholder="Nombre y parentesco"><span class="err">Escribe un contacto de emergencia.</span></div>
+            <div class="f"><label for="emerTel">Teléfono de ese contacto <span class="req">*</span></label><div class="prefix"><span>+57</span><input id="emerTel" inputmode="tel" placeholder="311 987 6543"></div><span class="err">Un celular de 10 dígitos.</span></div>
+            <div class="f"><label for="metodoPago">¿Cómo quieres que te paguemos? <span class="req">*</span></label><select id="metodoPago"><option>Nequi</option><option>Daviplata</option><option>Bancolombia — ahorros</option><option>Bancolombia — corriente</option><option>Davivienda</option><option>Otro banco</option></select></div>
+            <div class="f"><label for="cuenta">Número de cuenta o celular <span class="req">*</span></label><input id="cuenta" inputmode="numeric" placeholder="300 123 4567"><span class="err">Falta el número donde te consignamos.</span></div>
+            <div class="f full"><label for="titular">Titular de la cuenta</label><input id="titular" placeholder="Déjalo vacío si la cuenta está a tu nombre"></div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-h"><span class="step-n">5</span><h2>El acuerdo</h2></div>
+          <p class="hint">Léelo completo. Esto es lo que firmas al enviar el formulario.</p>
+
+          <div class="agree-box" id="agreeBox" tabindex="0" role="region" aria-label="Acuerdo de prestación de servicios de domicilios">
+            <h3>Acuerdo de prestación de servicios de domicilios</h3>
+            <p class="doc-meta">Versión 1.0 · Skipfee · Colombia</p>
+
+            <h4>1. Quiénes firman</h4>
+            <p>De un lado <b>MAMACITA Cacao SAS</b>, con domicilio en <b>Loma El Tesoro, Cl. 2 Sur #17-34, Santa Elena, Medellín, Antioquia</b>, operadora de la plataforma <b>Skipfee</b> (en adelante, la Compañía). Del otro lado la persona que llena y firma este formulario (en adelante, el Repartidor).</p>
+
+            <h4>2. Qué tipo de vínculo es este</h4>
+            <p>Es un <b>contrato de prestación de servicios entre independientes</b>. No es un contrato de trabajo y no genera relación laboral, subordinación ni exclusividad con la Compañía.</p>
+            <ul>
+              <li>El Repartidor decide cuándo se conecta y cuándo no.</li>
+              <li>Puede aceptar o rechazar cualquier domicilio, sin sanción.</li>
+              <li>Puede repartir para otras plataformas al mismo tiempo.</li>
+              <li>No hay salario, prestaciones sociales, horario ni jefe asignado.</li>
+            </ul>
+
+            <h4>3. Cuánto y cómo se paga</h4>
+            <p>La Compañía paga al Repartidor <b>diez mil pesos ($10.000 COP) por cada domicilio entregado con éxito</b>.</p>
+            <p>Un domicilio se considera <b>entregado con éxito</b> cuando el Repartidor lo recoge en el restaurante y lo entrega al cliente en la dirección indicada, y la entrega queda confirmada en la plataforma.</p>
+            <p><b>No se pagan</b> los domicilios que el Repartidor cancele después de aceptarlos, los que no recoja, ni los que se entreguen en una dirección equivocada por descuido suyo.</p>
+            <ul>
+              <li>El corte es los domingos a medianoche y el pago se hace <b>los lunes</b>.</li>
+              <li>Se paga a la cuenta que el Repartidor registró en este formulario.</li>
+              <li><b>Las propinas del cliente son 100% del Repartidor</b>, además de los $10.000.</li>
+              <li>Si el restaurante o la Compañía cambian el valor por domicilio, se avisa con 15 días de anticipación y solo aplica hacia adelante.</li>
+            </ul>
+
+            <h4>4. Qué corre por cuenta del Repartidor</h4>
+            <p>El vehículo, la gasolina, el mantenimiento, el celular, el plan de datos, el casco, la licencia, el SOAT y la tecnomecánica. La Compañía no reconoce estos gastos.</p>
+
+            <h4>5. Salud y riesgos</h4>
+            <p>El Repartidor es responsable de estar afiliado y al día en <b>salud (EPS)</b> y en <b>riesgos laborales (ARL)</b>, y debe demostrarlo cuando la Compañía se lo pida. La Compañía no responde por accidentes ocurridos durante los recorridos.</p>
+
+            <h4>6. Compromisos del Repartidor</h4>
+            <ul>
+              <li>Llegar a tiempo y tratar bien al cliente y al restaurante.</li>
+              <li>Llevar el pedido cerrado, completo y a la temperatura en que se lo entregaron.</li>
+              <li>No abrir ni consumir nada del pedido.</li>
+              <li>No conducir bajo efectos de alcohol o sustancias.</li>
+              <li>Cumplir las normas de tránsito y usar casco siempre.</li>
+              <li>Dar información verdadera en este formulario y mantenerla actualizada.</li>
+            </ul>
+
+            <h4>7. Responsabilidad</h4>
+            <p>El Repartidor responde por la pérdida o el daño del pedido cuando ocurra por su culpa, y por las multas de tránsito que genere. La Compañía puede descontar ese valor del pago semanal, informándolo antes.</p>
+
+            <h4>8. Datos de clientes y restaurantes</h4>
+            <p>Los datos de los clientes y de los restaurantes son confidenciales y se usan <b>solo</b> para hacer la entrega. El Repartidor no puede guardarlos, venderlos, ni contactar a esos clientes por fuera de la plataforma para ofrecerles servicios propios.</p>
+
+            <h4>9. Duración y terminación</h4>
+            <p>Este acuerdo no tiene plazo fijo. <b>Cualquiera de las dos partes puede terminarlo cuando quiera</b>, avisando a la otra, sin que eso genere indemnización. La Compañía puede desactivar la cuenta de inmediato si hay robo, agresión, suplantación, conducción embriagada o incumplimiento grave de este acuerdo. Los domicilios ya entregados se pagan igual.</p>
+
+            <h4>10. Tratamiento de datos personales</h4>
+            <p>De acuerdo con la <b>Ley 1581 de 2012</b>, MAMACITA Cacao SAS es responsable del tratamiento de los datos que el Repartidor entrega aquí. Se usan para verificar su identidad, asignarle domicilios, pagarle y contactarlo; no se venden a terceros. El Repartidor puede consultar, actualizar o pedir que se supriman sus datos escribiendo a la Compañía en la dirección del punto 1.</p>
+
+            <h4>11. Ley aplicable</h4>
+            <p>Este acuerdo se rige por las leyes de la República de Colombia. Para cualquier controversia, las partes acuerdan como domicilio contractual la ciudad de Medellín.</p>
+
+            <h4>12. Firma</h4>
+            <p>Al escribir su nombre completo en la casilla de firma y enviar el formulario, el Repartidor declara que <b>leyó y acepta este acuerdo en su totalidad</b>. Esa firma electrónica tiene la misma validez que una firma de puño y letra, conforme a la <b>Ley 527 de 1999</b>. El Repartidor recibirá una copia de este acuerdo por WhatsApp.</p>
+
+            <p class="agree-end">Fin del acuerdo · MAMACITA Cacao SAS · Loma El Tesoro, Cl. 2 Sur #17-34, Santa Elena, Medellín, Antioquia</p>
+          </div>
+          <p class="scrollhint" id="scrollHint"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14"/><path d="m5 12 7 7 7-7"/></svg><span>Desplázate hasta el final del acuerdo para poder aceptarlo.</span></p>
+
+          <label class="check locked" id="c1w"><input type="checkbox" id="c1" disabled><span><b>Leí y acepto el Acuerdo de prestación de servicios de domicilios</b> en su totalidad, incluido el pago de $10.000 por domicilio entregado con éxito y que este no es un contrato de trabajo.</span></label>
+          <label class="check" id="c2w"><input type="checkbox" id="c2"><span><b>Autorizo el tratamiento de mis datos personales</b> por parte de MAMACITA Cacao SAS para verificación, asignación de domicilios, pagos y contacto, conforme a la Ley 1581 de 2012.</span></label>
+          <label class="check" id="c3w"><input type="checkbox" id="c3"><span><b>Declaro que todo lo que escribí es verdad</b> y que mis documentos (cédula, licencia, SOAT y tecnomecánica, si aplican) están vigentes. Me comprometo a enviar las fotos por WhatsApp cuando me las pidan.</span></label>
+
+          <div class="sign">
+            <div class="f full"><label for="firma">Firma: escribe tu nombre completo, igual al del punto 1 <span class="req">*</span></label><input id="firma" placeholder="Juan Esteban Restrepo" autocomplete="off"><span class="err" id="firmaErr">La firma debe coincidir con el nombre que escribiste arriba.</span></div>
+            <p class="stamp" id="stamp"></p>
+          </div>
+        </div>
+
+        <div class="submit">
+          <div class="formerr" id="formErr"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.2v.2"/></svg><span id="formErrTxt">Revisa los campos marcados en rojo.</span></div>
+          <button class="btn" type="submit" id="submitBtn" disabled>Aceptar el acuerdo y enviar mi solicitud</button>
+          <p class="note">Al enviar quedas en la lista de espera. Te escribimos por WhatsApp para verificar documentos.</p>
+        </div>
+      </form>
+    </div>
+
+    <div class="card done-wrap" id="doneWrap">
+      <div class="done-top">
+        <span class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></svg></span>
+        <h2>Listo, <span id="doneName">tu solicitud</span> quedó registrada</h2>
+        <p>Aceptaste el acuerdo y guardamos tus datos. El siguiente paso es la verificación de documentos por WhatsApp.</p>
+        <span class="ref"><small>Radicado</small> <span id="refCode" class="tnum">—</span></span>
+      </div>
+      <div class="next">
+        <h3>Qué sigue</h3>
+        <div class="nstep"><span class="num">1</span><p><b>Manda tu solicitud por WhatsApp.</b> Usa el botón de abajo: te abre el chat con el texto ya escrito.</p></div>
+        <div class="nstep"><span class="num">2</span><p><b>Envía las fotos</b> de tu cédula por ambos lados, la licencia, el SOAT y la tarjeta de propiedad.</p></div>
+        <div class="nstep"><span class="num">3</span><p><b>Verificamos en 24–48 horas</b> y te activamos la cuenta con tu primera zona.</p></div>
+        <div class="nstep"><span class="num">4</span><p><b>Empiezas a recibir pedidos.</b> El primer pago te llega el lunes siguiente a tu primera entrega.</p></div>
+      </div>
+      <div class="summary" id="summary"></div>
+      <div class="done-actions">
+        <button class="btn" type="button" id="waBtn">Enviar por WhatsApp</button>
+        <button class="btn ghost" type="button" id="mailBtn">Enviar por correo</button>
+        <button class="btn ghost" type="button" id="copyBtn">Copiar mis datos</button>
+        <button class="btn ghost" type="button" id="againBtn">Registrar a otra persona</button>
+      </div>
+    </div>
   </div>
 
-  <div class="err-banner" id="errBanner"></div>
-
-  <form id="applyForm" novalidate>
-
-    <div class="card">
-      <h3><span class="num">1</span> Datos personales</h3>
-      <p class="hint">Como aparecen en tu documento de identidad.</p>
-      <div class="field">
-        <label>Nombre completo <span class="req">*</span></label>
-        <input type="text" id="fullName" required autocomplete="name">
-      </div>
-      <div class="row2">
-        <div class="field">
-          <label>Tipo de documento <span class="req">*</span></label>
-          <select id="documentType" required>
-            <option value="">Selecciona…</option>
-            <option value="CC">Cédula de ciudadanía</option>
-            <option value="CE">Cédula de extranjería</option>
-            <option value="PPT">Permiso por Protección Temporal</option>
-            <option value="PASAPORTE">Pasaporte</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Número de documento <span class="req">*</span></label>
-          <input type="text" id="documentNumber" required inputmode="numeric">
-        </div>
-      </div>
-      <div class="row2">
-        <div class="field">
-          <label>Fecha de nacimiento</label>
-          <input type="date" id="birthDate">
-        </div>
-        <div class="field">
-          <label>Celular (WhatsApp) <span class="req">*</span></label>
-          <input type="tel" id="phone" required placeholder="300 000 0000" autocomplete="tel">
-        </div>
-      </div>
-      <div class="field">
-        <label>Correo electrónico</label>
-        <input type="email" id="email" placeholder="tucorreo@ejemplo.com" autocomplete="email">
-      </div>
-      <div class="row2">
-        <div class="field">
-          <label>Dirección</label>
-          <input type="text" id="address" placeholder="Cl 10 # 20-30">
-        </div>
-        <div class="field">
-          <label>Barrio</label>
-          <input type="text" id="neighborhood">
-        </div>
-      </div>
-      <div class="field">
-        <label>Ciudad</label>
-        <input type="text" id="city" value="Medellín">
-      </div>
+  <aside class="side">
+    <div class="scard dark">
+      <h3>Cómo funciona el pago</h3>
+      <div class="li"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m4.5 12.5 5 5 10-11"/></svg><span><b>$10.000</b> por cada domicilio entregado con éxito.</span></div>
+      <div class="li"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m4.5 12.5 5 5 10-11"/></svg><span>Corte el domingo, <b>pago el lunes</b> a tu Nequi, Daviplata o banco.</span></div>
+      <div class="li"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m4.5 12.5 5 5 10-11"/></svg><span>Las <b>propinas son tuyas</b>, completas.</span></div>
+      <div class="li"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m4.5 12.5 5 5 10-11"/></svg><span>Sin horario fijo y <b>sin mínimo de entregas</b>.</span></div>
     </div>
-
-    <div class="card">
-      <h3><span class="num">2</span> Vehículo</h3>
-      <p class="hint">Selecciona cómo vas a entregar los domicilios.</p>
-      <div class="choice-grid" id="vehicleChoices">
-        <label class="choice" data-value="bici"><span class="ic">🚲</span>Bicicleta<input type="radio" name="vehicleType"></label>
-        <label class="choice" data-value="moto"><span class="ic">🏍️</span>Moto<input type="radio" name="vehicleType"></label>
-        <label class="choice" data-value="carro"><span class="ic">🚗</span>Carro<input type="radio" name="vehicleType"></label>
-        <label class="choice" data-value="a_pie"><span class="ic">🚶</span>A pie<input type="radio" name="vehicleType"></label>
-      </div>
-
-      <div class="vehicle-extra" id="motoCarroExtra">
-        <div class="row2">
-          <div class="field">
-            <label>Placa <span class="req">*</span></label>
-            <input type="text" id="plate" placeholder="ABC12D">
-          </div>
-          <div class="field">
-            <label>N° de licencia de conducción <span class="req">*</span></label>
-            <input type="text" id="licenseNumber">
-          </div>
-        </div>
-        <div class="row2">
-          <div class="field">
-            <label>Vencimiento SOAT <span class="req">*</span></label>
-            <input type="date" id="soatExpiry">
-          </div>
-          <div class="field" id="tecnoField">
-            <label>Vencimiento tecnomecánica</label>
-            <input type="date" id="tecnomecanicaExpiry">
-          </div>
-        </div>
-      </div>
+    <div class="scard">
+      <h3>Lo que necesitas tener</h3>
+      <div class="li"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M7 10h4M7 14h7"/></svg><span>Cédula, cédula de extranjería o PPT vigente</span></div>
+      <div class="li"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M9 17h6M6 17l4-7h5"/></svg><span>Moto, bici o carro propio, en buen estado</span></div>
+      <div class="li"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6L12 3z"/></svg><span>Licencia, SOAT y tecnomecánica al día (si es motorizado)</span></div>
+      <div class="li"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg><span>EPS activa y, ojalá, ARL</span></div>
+      <div class="li"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><span>Celular con datos y WhatsApp</span></div>
     </div>
-
-    <div class="card">
-      <h3><span class="num">3</span> Disponibilidad</h3>
-      <p class="hint">Marca los días que puedes trabajar.</p>
-      <div class="days-grid" id="daysGrid">
-        <label class="day-chip" data-value="lun">Lun<input type="checkbox"></label>
-        <label class="day-chip" data-value="mar">Mar<input type="checkbox"></label>
-        <label class="day-chip" data-value="mie">Mié<input type="checkbox"></label>
-        <label class="day-chip" data-value="jue">Jue<input type="checkbox"></label>
-        <label class="day-chip" data-value="vie">Vie<input type="checkbox"></label>
-        <label class="day-chip" data-value="sab">Sáb<input type="checkbox"></label>
-        <label class="day-chip" data-value="dom">Dom<input type="checkbox"></label>
-      </div>
-      <div class="field">
-        <label>Franja horaria habitual</label>
-        <select id="timeSlot">
-          <option value="">Selecciona…</option>
-          <option value="manana">Mañana (7am–12m)</option>
-          <option value="tarde">Tarde (12m–6pm)</option>
-          <option value="noche">Noche (6pm–11pm)</option>
-          <option value="todo_dia">Todo el día</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3><span class="num">4</span> Salud y contacto de emergencia</h3>
-      <div class="row2">
-        <div class="field">
-          <label>EPS</label>
-          <input type="text" id="eps">
-        </div>
-        <div class="field">
-          <label>ARL (si aplica)</label>
-          <input type="text" id="arl">
-        </div>
-      </div>
-      <div class="row2">
-        <div class="field">
-          <label>Contacto de emergencia — nombre</label>
-          <input type="text" id="emergencyContactName">
-        </div>
-        <div class="field">
-          <label>Contacto de emergencia — teléfono</label>
-          <input type="tel" id="emergencyContactPhone">
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3><span class="num">5</span> Datos de pago</h3>
-      <p class="hint">Aquí recibirás tus pagos semanales.</p>
-      <div class="row2">
-        <div class="field">
-          <label>Método de pago <span class="req">*</span></label>
-          <select id="paymentMethod" required>
-            <option value="">Selecciona…</option>
-            <option value="nequi">Nequi</option>
-            <option value="daviplata">Daviplata</option>
-            <option value="bancolombia">Cuenta Bancolombia</option>
-            <option value="otro_banco">Otro banco</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Número de cuenta / celular <span class="req">*</span></label>
-          <input type="text" id="paymentAccount" required>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3><span class="num">6</span> Acuerdo de colaboración</h3>
-      <p class="hint">Léelo completo — el botón de aceptar se activa al llegar al final.</p>
-
-      <div class="agreement-box" id="agreementBox">
-        <h4>1. Partes</h4>
-        <p>Este acuerdo se celebra entre <strong>MAMACITA Cacao SAS</strong> (NIT 35-2643447), domicilio en Loma El Tesoro, Cl. 2 Sur #17-34, Santa Elena, Medellín, Antioquia, operadora de la plataforma <strong>Skipfee</strong>, y la persona que se registra como domiciliario a través de este formulario ("el domiciliario").</p>
-
-        <h4>2. Naturaleza de la relación</h4>
-        <p>Este es un acuerdo de colaboración bajo la modalidad de prestación de servicios independientes. No constituye, bajo ninguna circunstancia, un contrato de trabajo ni genera relación laboral, subordinación, ni exclusividad. El domiciliario decide libremente sus horarios, puede rechazar cualquier domicilio ofrecido sin justificación y puede trabajar simultáneamente para otras plataformas o empleadores.</p>
-
-        <h4>3. Pago</h4>
-        <p>El domiciliario recibirá <strong>$10.000 COP por cada domicilio entregado con éxito</strong>. Se considera entregado con éxito cuando el pedido llega al cliente final en el lugar y estado acordado, confirmado desde la app.</p>
-        <p>No se paga por: domicilios cancelados antes de la entrega, pedidos no recogidos en el restaurante, o casos en que la entrega fallida sea atribuible a un error del domiciliario (dirección equivocada por no seguir las instrucciones, pedido dañado por mal manejo, etc.).</p>
-        <p>Las propinas que el cliente entregue directamente al domiciliario son 100% suyas y no hacen parte de esta liquidación.</p>
-
-        <h4>4. Ciclo de pago</h4>
-        <p>La semana de trabajo cierra los domingos a las 11:59pm. El pago de lo acumulado en esa semana se realiza el lunes siguiente al método de pago registrado en este formulario.</p>
-
-        <h4>5. Costos a cargo del domiciliario</h4>
-        <p>Corren por cuenta del domiciliario: combustible, mantenimiento del vehículo, plan de datos móviles, SOAT y tecnomecánica (cuando aplique) y su afiliación a salud (EPS) y riesgos laborales (ARL) como trabajador independiente.</p>
-
-        <h4>6. Conducta y normas de tránsito</h4>
-        <p>El domiciliario se compromete a cumplir las normas de tránsito vigentes, portar los documentos de su vehículo al día, y tratar con respeto a los restaurantes aliados y a los clientes. Skipfee puede suspender o retirar el acceso a la plataforma ante conductas fraudulentas, agresivas o que pongan en riesgo a terceros.</p>
-
-        <h4>7. Responsabilidad</h4>
-        <p>El domiciliario es responsable por la pérdida, daño o extravío de pedidos bajo su custodia, así como por multas o comparendos de tránsito en los que incurra durante sus entregas. Skipfee no asume responsabilidad civil, penal o administrativa derivada de la conducción del domiciliario.</p>
-
-        <h4>8. Uso de datos de clientes</h4>
-        <p>El domiciliario solo puede usar los datos de contacto de los clientes (dirección, teléfono) para efectos de la entrega del pedido en curso. Está prohibido contactar clientes fuera de la plataforma, guardar sus datos, o usarlos con fines distintos a la entrega.</p>
-
-        <h4>9. Terminación</h4>
-        <p>Cualquiera de las partes puede terminar esta colaboración en cualquier momento y sin necesidad de justificar la causa, sin que ello genere indemnización alguna, dado que no existe relación laboral.</p>
-
-        <h4>10. Datos personales</h4>
-        <p><strong>MAMACITA Cacao SAS</strong> es responsable del tratamiento de los datos personales suministrados en este formulario, conforme a la Ley 1581 de 2012 y sus decretos reglamentarios. Los datos se usan exclusivamente para la gestión del vínculo con el domiciliario (pagos, contacto, verificación de documentos) y no se comparten con terceros distintos a los necesarios para operar la plataforma.</p>
-
-        <h4>11. Firma electrónica</h4>
-        <p>De conformidad con la Ley 527 de 1999, el domiciliario acepta que escribir su nombre completo como firma electrónica al final de este formulario tiene la misma validez y efectos jurídicos que una firma manuscrita, y constituye su aceptación plena de este acuerdo.</p>
-
-        <p style="margin-top:16px; font-weight:700; color:var(--mint-dark);">— Fin del acuerdo —</p>
-      </div>
-      <div class="scroll-note" id="scrollNote">↓ Desliza hasta el final para poder aceptar ↓</div>
-
-      <label class="checkbox-row locked" id="rowAgreement">
-        <input type="checkbox" id="agreementAccepted" disabled>
-        <span>He leído y acepto el Acuerdo de Colaboración completo con MAMACITA Cacao SAS.</span>
-      </label>
-      <label class="checkbox-row">
-        <input type="checkbox" id="consentData">
-        <span>Autorizo el tratamiento de mis datos personales conforme a la Ley 1581 de 2012, según lo descrito en la cláusula 10.</span>
-      </label>
-      <label class="checkbox-row">
-        <input type="checkbox" id="consentContract">
-        <span>Entiendo que esto es un acuerdo de prestación de servicios independientes, sin relación laboral ni exclusividad.</span>
-      </label>
-      <label class="checkbox-row">
-        <input type="checkbox" id="consentTruth">
-        <span>Declaro que la información suministrada en este formulario es veraz y completa.</span>
-      </label>
-
-      <div class="field sig-field" style="margin-top:14px;">
-        <label>Firma electrónica — escribe tu nombre completo tal como en el paso 1 <span class="req">*</span></label>
-        <input type="text" id="agreementSignature" placeholder="Escribe tu nombre completo">
-        <div id="sigFeedback"></div>
-      </div>
-    </div>
-
-    <button type="submit" class="submit" id="submitBtn" disabled>Enviar mi solicitud</button>
-    <div class="draft-note" id="draftNote"></div>
-  </form>
+  </aside>
 </main>
 
-<div id="successScreen">
-  <div class="check">✓</div>
-  <h2>¡Solicitud enviada!</h2>
-  <p>Guarda este número de radicado:</p>
-  <div class="radicado" id="radicadoOut">SKF-000000</div>
-  <div class="steps">
-    <p style="margin:0 0 10px; font-weight:700;">Próximos pasos</p>
-    <ul>
-      <li>Nuestro equipo revisa tu documentación en los próximos días hábiles.</li>
-      <li>Te contactaremos por el celular o correo que registraste para confirmar tu activación.</li>
-      <li>Una vez activo, recibirás acceso a la app de domiciliarios para empezar a tomar pedidos.</li>
-    </ul>
-  </div>
-  <button class="btn-secondary" id="copyDataBtn">Copiar mis datos</button>
-</div>
-
-<footer>
-  MAMACITA Cacao SAS · NIT 35-2643447 · Loma El Tesoro, Cl. 2 Sur #17-34, Santa Elena, Medellín, Antioquia
+<footer class="wrap">
+  <b>MAMACITA Cacao SAS</b> · Loma El Tesoro, Cl. 2 Sur #17-34, Santa Elena, Medellín, Antioquia, Colombia<br>
+  Skipfee es una plataforma de MAMACITA Cacao SAS. Este formulario no constituye contrato de trabajo. Tratamiento de datos conforme a la Ley 1581 de 2012.
 </footer>
 
+<div class="toast" id="toast"></div>
+
 <script>
-(function () {
-  const DRAFT_KEY = 'skipfee_domiciliario_draft_v1';
-  const form = document.getElementById('applyForm');
-  const errBanner = document.getElementById('errBanner');
-  const submitBtn = document.getElementById('submitBtn');
+/* ---------------------------------------------------------------
+   Botones de respaldo en la pantalla final. WHATSAPP: solo dígitos
+   con indicativo. EMAIL: buzón que recibe la copia manual. El envío
+   automático real pasa por /api/apply (Supabase + Web3Forms), esto
+   es solo un respaldo que el domiciliario dispara él mismo.
+----------------------------------------------------------------*/
+var WHATSAPP = "573223140283";
+var EMAIL    = "leoneltelesmeneses@gmail.com";
 
-  const fieldIds = [
-    'fullName','documentType','documentNumber','birthDate','phone','email',
-    'address','neighborhood','city','plate','licenseNumber','soatExpiry',
-    'tecnomecanicaExpiry','timeSlot','eps','arl','emergencyContactName',
-    'emergencyContactPhone','paymentMethod','paymentAccount','agreementSignature'
-  ];
+var $ = function(id){ return document.getElementById(id); };
+var form = $('form'), agreeBox = $('agreeBox'), submitBtn = $('submitBtn');
+var DRAFT = 'skipfee-domi-draft';
 
-  let vehicleType = '';
-  let days = new Set();
+function toast(m){
+  var t = $('toast'); t.textContent = m; t.classList.add('on');
+  clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove('on'); }, 2600);
+}
+function norm(s){
+  return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/\s+/g,' ').trim();
+}
+function stamp(){
+  var d = new Date();
+  return d.toLocaleDateString('es-CO',{day:'2-digit',month:'long',year:'numeric'}) + ' a las ' +
+         d.toLocaleTimeString('es-CO',{hour:'2-digit',minute:'2-digit'});
+}
+$('stamp').textContent = 'Se firma con fecha de hoy: ' + stamp() + '. Recibirás copia del acuerdo por WhatsApp.';
 
-  // ---- Vehicle choice ----
-  const vehicleChoices = document.querySelectorAll('#vehicleChoices .choice');
-  const motoCarroExtra = document.getElementById('motoCarroExtra');
-  const tecnoField = document.getElementById('tecnoField');
-  vehicleChoices.forEach(el => {
-    el.addEventListener('click', () => {
-      vehicleChoices.forEach(c => c.classList.remove('active'));
-      el.classList.add('active');
-      vehicleType = el.dataset.value;
-      const needsVehicleDocs = vehicleType === 'moto' || vehicleType === 'carro';
-      motoCarroExtra.classList.toggle('show', needsVehicleDocs);
-      tecnoField.style.display = vehicleType === 'carro' ? 'block' : 'none';
-      saveDraft();
-      updateSubmitState();
+function veh(){ var el = document.querySelector('input[name="veh"]:checked'); return el ? el.value : 'moto'; }
+function vehLabel(){ return {moto:'Moto', bici:'Bicicleta', carro:'Carro', a_pie:'A pie'}[veh()] || veh(); }
+function motorized(){ return veh() === 'moto' || veh() === 'carro'; }
+function syncVeh(){
+  $('motorFields').style.display = motorized() ? 'grid' : 'none';
+  if(!motorized()) ['placa','licencia','soat','tecno'].forEach(function(id){ $(id).closest('.f').classList.remove('bad'); });
+}
+document.querySelectorAll('input[name="veh"]').forEach(function(r){ r.addEventListener('change', function(){ syncVeh(); saveDraft(); }); });
+
+function checkScroll(){
+  var atEnd = agreeBox.scrollTop + agreeBox.clientHeight >= agreeBox.scrollHeight - 28;
+  if(atEnd && $('c1').disabled){
+    $('c1').disabled = false;
+    $('c1w').classList.remove('locked');
+    var h = $('scrollHint');
+    h.classList.add('done');
+    h.querySelector('span').textContent = 'Acuerdo leído. Ya puedes aceptarlo.';
+    h.querySelector('svg').innerHTML = '<path d="m4.5 12.5 5 5 10-11"/>';
+  }
+}
+agreeBox.addEventListener('scroll', checkScroll);
+
+function syncSubmit(){
+  submitBtn.disabled = !($('c1').checked && $('c2').checked && $('c3').checked);
+}
+['c1','c2','c3'].forEach(function(id){
+  $(id).addEventListener('change', function(){
+    $(id + 'w').classList.remove('bad');
+    syncSubmit();
+  });
+});
+
+function bad(id, on){ $(id).closest('.f').classList.toggle('bad', !!on); return !on; }
+function checkedVals(wrapId){
+  return Array.prototype.slice.call(document.querySelectorAll('#' + wrapId + ' input:checked')).map(function(i){ return i.value; });
+}
+function isCel(v){ return /^3\d{9}$/.test((v||'').replace(/\D/g,'')); }
+function age(v){
+  if(!v) return 0;
+  var b = new Date(v), n = new Date(), a = n.getFullYear() - b.getFullYear(), m = n.getMonth() - b.getMonth();
+  if(m < 0 || (m === 0 && n.getDate() < b.getDate())) a--;
+  return a;
+}
+function future(v){ return v && new Date(v) > new Date(); }
+
+function validate(){
+  var ok = true, first = null;
+  function fail(id){ if(!first) first = $(id); ok = false; }
+
+  if(!bad('nombre', norm($('nombre').value).split(' ').length < 2)) fail('nombre');
+  if(!bad('doc', $('doc').value.replace(/\D/g,'').length < 6)) fail('doc');
+  if(!bad('nacimiento', age($('nacimiento').value) < 18)) fail('nacimiento');
+  if(!bad('cel', !isCel($('cel').value))) fail('cel');
+  if(!bad('correo', $('correo').value && !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test($('correo').value))) fail('correo');
+  if(!bad('zona', !$('zona').value.trim())) fail('zona');
+
+  if(motorized()){
+    if(!bad('placa', $('placa').value.trim().length < 5)) fail('placa');
+    if(!bad('licencia', !future($('licencia').value))) fail('licencia');
+    if(!bad('soat', !future($('soat').value))) fail('soat');
+    if(!bad('tecno', $('tecno').value && !future($('tecno').value))) fail('tecno');
+  }
+
+  var d = checkedVals('dias').length > 0, f = checkedVals('franjas').length > 0;
+  $('diasErr').style.display = d ? 'none' : 'block';
+  $('franjasErr').style.display = f ? 'none' : 'block';
+  if(!d){ ok = false; if(!first) first = $('dias'); }
+  if(!f){ ok = false; if(!first) first = $('franjas'); }
+
+  if(!bad('eps', !$('eps').value.trim())) fail('eps');
+  if(!bad('emerNombre', !$('emerNombre').value.trim())) fail('emerNombre');
+  if(!bad('emerTel', !isCel($('emerTel').value))) fail('emerTel');
+  if(!bad('cuenta', $('cuenta').value.replace(/\D/g,'').length < 6)) fail('cuenta');
+
+  var firmaOk = norm($('firma').value) && norm($('firma').value) === norm($('nombre').value);
+  if(!bad('firma', !firmaOk)) fail('firma');
+
+  ['c1','c2','c3'].forEach(function(id){
+    var on = $(id).checked;
+    $(id + 'w').classList.toggle('bad', !on);
+    if(!on){ ok = false; if(!first) first = $(id + 'w'); }
+  });
+
+  return {ok: ok, first: first};
+}
+
+var TEXT_IDS = ['nombre','tipoDoc','doc','nacimiento','cel','correo','ciudad','zona','placa','modelo','licencia','soat','tecno','horas','exp','eps','arl','emerNombre','emerTel','metodoPago','cuenta','titular'];
+function saveDraft(){
+  try{
+    var o = {veh: veh(), dias: checkedVals('dias'), franjas: checkedVals('franjas')};
+    TEXT_IDS.forEach(function(id){ o[id] = $(id).value; });
+    localStorage.setItem(DRAFT, JSON.stringify(o));
+  }catch(e){}
+}
+function loadDraft(){
+  try{
+    var o = JSON.parse(localStorage.getItem(DRAFT) || 'null');
+    if(!o) return;
+    TEXT_IDS.forEach(function(id){ if(o[id] != null) $(id).value = o[id]; });
+    if(o.veh){ var r = document.querySelector('input[name="veh"][value="' + o.veh + '"]'); if(r) r.checked = true; }
+    ['dias','franjas'].forEach(function(k){
+      if(!o[k]) return;
+      document.querySelectorAll('#' + k + ' input').forEach(function(i){ i.checked = o[k].indexOf(i.value) > -1; });
     });
+  }catch(e){}
+}
+form.addEventListener('input', saveDraft);
+form.addEventListener('change', saveDraft);
+
+var lastSummary = '', lastRef = '';
+function buildSummary(ref){
+  var L = [];
+  L.push('SOLICITUD DE DOMICILIARIO — SKIPFEE');
+  L.push('Radicado: ' + ref);
+  L.push('Firmado: ' + stamp());
+  L.push('');
+  L.push('DATOS');
+  L.push('Nombre: ' + $('nombre').value.trim());
+  L.push('Documento: ' + $('tipoDoc').value + ' ' + $('doc').value.trim());
+  L.push('Nacimiento: ' + $('nacimiento').value + ' (' + age($('nacimiento').value) + ' años)');
+  L.push('Celular: +57 ' + $('cel').value.replace(/\D/g,''));
+  if($('correo').value.trim()) L.push('Correo: ' + $('correo').value.trim());
+  L.push('Ciudad: ' + $('ciudad').value + ' — ' + $('zona').value.trim());
+  L.push('');
+  L.push('VEHÍCULO');
+  L.push('Reparte en: ' + vehLabel());
+  if(motorized()){
+    L.push('Placa: ' + $('placa').value.trim().toUpperCase() + ($('modelo').value.trim() ? ' — ' + $('modelo').value.trim() : ''));
+    L.push('Licencia vigente hasta: ' + $('licencia').value);
+    L.push('SOAT vigente hasta: ' + $('soat').value);
+    if($('tecno').value) L.push('Tecnomecánica vigente hasta: ' + $('tecno').value);
+  }
+  L.push('');
+  L.push('DISPONIBILIDAD');
+  L.push('Días: ' + checkedVals('dias').join(', '));
+  L.push('Franjas: ' + checkedVals('franjas').join(' / '));
+  L.push('Horas por semana: ' + $('horas').value);
+  L.push('Experiencia: ' + $('exp').value);
+  L.push('');
+  L.push('SEGURIDAD Y PAGOS');
+  L.push('EPS: ' + $('eps').value.trim());
+  L.push('ARL: ' + $('arl').value);
+  L.push('Emergencia: ' + $('emerNombre').value.trim() + ' — +57 ' + $('emerTel').value.replace(/\D/g,''));
+  L.push('Pago por: ' + $('metodoPago').value + ' — ' + $('cuenta').value.trim());
+  if($('titular').value.trim()) L.push('Titular: ' + $('titular').value.trim());
+  L.push('');
+  L.push('ACUERDO');
+  L.push('Acepta el Acuerdo de prestación de servicios v1.0: SÍ');
+  L.push('Autoriza tratamiento de datos (Ley 1581 de 2012): SÍ');
+  L.push('Declara información veraz y documentos vigentes: SÍ');
+  L.push('Firma electrónica: ' + $('firma').value.trim());
+  return L.join('\n');
+}
+
+function buildPayload(){
+  return {
+    fullName: $('nombre').value.trim(),
+    documentType: $('tipoDoc').value,
+    documentNumber: $('doc').value.trim(),
+    birthDate: $('nacimiento').value,
+    phone: '+57' + $('cel').value.replace(/\D/g,''),
+    email: $('correo').value.trim(),
+    city: $('ciudad').value,
+    neighborhood: $('zona').value.trim(),
+    vehicleType: veh(),
+    plate: motorized() ? $('placa').value.trim().toUpperCase() : '',
+    vehicleModel: $('modelo').value.trim(),
+    licenseExpiry: motorized() ? $('licencia').value : '',
+    soatExpiry: motorized() ? $('soat').value : '',
+    tecnomecanicaExpiry: motorized() ? $('tecno').value : '',
+    availability: { days: checkedVals('dias'), shifts: checkedVals('franjas'), weeklyHours: $('horas').value, priorExperience: $('exp').value },
+    eps: $('eps').value.trim(),
+    arl: $('arl').value,
+    emergencyContactName: $('emerNombre').value.trim(),
+    emergencyContactPhone: '+57' + $('emerTel').value.replace(/\D/g,''),
+    paymentMethod: $('metodoPago').value,
+    paymentAccount: $('cuenta').value.trim(),
+    paymentAccountHolder: $('titular').value.trim(),
+    agreementAccepted: $('c1').checked,
+    consentData: $('c2').checked,
+    consentTruth: $('c3').checked,
+    agreementSignature: $('firma').value.trim(),
+  };
+}
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  var v = validate();
+  $('formErr').classList.toggle('on', !v.ok);
+  if(!v.ok){
+    $('formErrTxt').textContent = 'Faltan datos o hay algo por corregir. Mira lo marcado en rojo.';
+    if(v.first) v.first.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
+
+  submitBtn.disabled = true;
+  var originalLabel = submitBtn.textContent;
+  submitBtn.textContent = 'Enviando…';
+
+  fetch('/api/apply', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(buildPayload()),
+  })
+  .then(function(resp){ return resp.json().then(function(out){ return {resp: resp, out: out}; }); })
+  .then(function(res){
+    if(!res.resp.ok || !res.out.ok){ throw new Error(res.out.error || 'submit_failed'); }
+    lastRef = res.out.radicado;
+    lastSummary = buildSummary(lastRef);
+    $('refCode').textContent = lastRef;
+    $('doneName').textContent = $('nombre').value.trim().split(' ')[0];
+    $('summary').textContent = lastSummary;
+    $("waBtn").style.display = WHATSAPP ? "flex" : "none";
+    $("mailBtn").style.display = EMAIL ? "flex" : "none";
+    $('formWrap').classList.add('off');
+    $('doneWrap').classList.add('on');
+    try{ localStorage.removeItem(DRAFT); }catch(err){}
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  })
+  .catch(function(){
+    $('formErr').classList.add('on');
+    $('formErrTxt').textContent = 'No pudimos enviar tu solicitud. Revisa tu conexión e inténtalo de nuevo.';
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalLabel;
+    window.scrollTo({top: 0, behavior: 'smooth'});
   });
+});
 
-  // ---- Days ----
-  const dayChips = document.querySelectorAll('#daysGrid .day-chip');
-  dayChips.forEach(el => {
-    el.addEventListener('click', () => {
-      const v = el.dataset.value;
-      if (days.has(v)) { days.delete(v); el.classList.remove('active'); }
-      else { days.add(v); el.classList.add('active'); }
-      saveDraft();
-    });
+$('waBtn').addEventListener('click', function(){
+  if(!WHATSAPP) return;
+  window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(lastSummary), '_blank', 'noopener');
+});
+$("mailBtn").addEventListener("click", function(){
+  if(!EMAIL) return;
+  var asunto = "Solicitud domiciliario " + lastRef + " — " + $("nombre").value.trim();
+  window.location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(asunto) + "&body=" + encodeURIComponent(lastSummary);
+});
+$("copyBtn").addEventListener('click', function(){
+  navigator.clipboard.writeText(lastSummary).then(function(){
+    toast('Datos copiados. Pégalos en el WhatsApp de Skipfee.');
+  }, function(){
+    toast('No se pudo copiar. Selecciona el texto y cópialo a mano.');
   });
+});
+$('againBtn').addEventListener('click', function(){
+  form.reset();
+  $('doneWrap').classList.remove('on');
+  $('formWrap').classList.remove('off');
+  $('c1').disabled = true; $('c1w').classList.add('locked');
+  var h = $('scrollHint'); h.classList.remove('done');
+  h.querySelector('span').textContent = 'Desplázate hasta el final del acuerdo para poder aceptarlo.';
+  h.querySelector('svg').innerHTML = '<path d="M12 5v14"/><path d="m5 12 7 7 7-7"/>';
+  agreeBox.scrollTop = 0;
+  document.querySelectorAll('.f.bad').forEach(function(f){ f.classList.remove('bad'); });
+  $('formErr').classList.remove('on');
+  submitBtn.textContent = 'Aceptar el acuerdo y enviar mi solicitud';
+  syncVeh(); syncSubmit();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+});
 
-  // ---- Agreement scroll gate ----
-  const agreementBox = document.getElementById('agreementBox');
-  const scrollNote = document.getElementById('scrollNote');
-  const rowAgreement = document.getElementById('rowAgreement');
-  const agreementAccepted = document.getElementById('agreementAccepted');
-  let scrolledToEnd = false;
-  agreementBox.addEventListener('scroll', () => {
-    const atEnd = agreementBox.scrollTop + agreementBox.clientHeight >= agreementBox.scrollHeight - 12;
-    if (atEnd && !scrolledToEnd) {
-      scrolledToEnd = true;
-      agreementAccepted.disabled = false;
-      rowAgreement.classList.remove('locked');
-      scrollNote.textContent = '✓ Puedes aceptar el acuerdo';
-      scrollNote.classList.add('done');
-    }
-  });
-
-  // ---- Signature match ----
-  const fullNameInput = document.getElementById('fullName');
-  const sigInput = document.getElementById('agreementSignature');
-  const sigFeedback = document.getElementById('sigFeedback');
-  function signatureMatches() {
-    const a = (fullNameInput.value || '').trim().toLowerCase();
-    const b = (sigInput.value || '').trim().toLowerCase();
-    return a.length > 0 && a === b;
-  }
-  function renderSigFeedback() {
-    if (!sigInput.value) { sigFeedback.innerHTML = ''; return; }
-    if (signatureMatches()) {
-      sigFeedback.innerHTML = '<div class="sig-ok">✓ Coincide con tu nombre</div>';
-    } else {
-      sigFeedback.innerHTML = '<div class="sig-bad">No coincide exactamente con el nombre del paso 1</div>';
-    }
-  }
-  sigInput.addEventListener('input', () => { renderSigFeedback(); updateSubmitState(); saveDraft(); });
-  fullNameInput.addEventListener('input', () => { renderSigFeedback(); updateSubmitState(); saveDraft(); });
-
-  // ---- Submit gate ----
-  const consentIds = ['agreementAccepted','consentData','consentContract','consentTruth'];
-  function allConsentsChecked() {
-    return consentIds.every(id => document.getElementById(id).checked);
-  }
-  function requiredTextFilled() {
-    const req = ['fullName','documentType','documentNumber','phone','paymentMethod','paymentAccount'];
-    const baseOk = req.every(id => (document.getElementById(id).value || '').trim() !== '');
-    if (!vehicleType) return false;
-    if ((vehicleType === 'moto' || vehicleType === 'carro')) {
-      const plate = document.getElementById('plate').value.trim();
-      const license = document.getElementById('licenseNumber').value.trim();
-      const soat = document.getElementById('soatExpiry').value.trim();
-      if (!plate || !license || !soat) return false;
-    }
-    return baseOk;
-  }
-  function updateSubmitState() {
-    const ok = requiredTextFilled() && allConsentsChecked() && signatureMatches();
-    submitBtn.disabled = !ok;
-  }
-  consentIds.forEach(id => document.getElementById(id).addEventListener('change', () => { updateSubmitState(); saveDraft(); }));
-  fieldIds.concat(['paymentMethod']).forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('input', () => { updateSubmitState(); saveDraft(); });
-    if (el) el.addEventListener('change', () => { updateSubmitState(); saveDraft(); });
-  });
-
-  // ---- Draft autosave ----
-  const draftNote = document.getElementById('draftNote');
-  function saveDraft() {
-    try {
-      const data = collectData();
-      localStorage.setItem(DRAFT_KEY, JSON.stringify(data));
-      draftNote.textContent = 'Borrador guardado en este dispositivo';
-    } catch (e) {}
-  }
-  function loadDraft() {
-    try {
-      const raw = localStorage.getItem(DRAFT_KEY);
-      if (!raw) return;
-      const data = JSON.parse(raw);
-      fieldIds.forEach(id => {
-        const el = document.getElementById(id);
-        if (el && data[id] !== undefined) el.value = data[id];
-      });
-      if (data.vehicleType) {
-        const el = document.querySelector('#vehicleChoices .choice[data-value="' + data.vehicleType + '"]');
-        if (el) el.click();
-      }
-      if (Array.isArray(data.days)) {
-        data.days.forEach(v => {
-          const el = document.querySelector('#daysGrid .day-chip[data-value="' + v + '"]');
-          if (el) el.click();
-        });
-      }
-      consentIds.forEach(id => {
-        if (id === 'agreementAccepted') return; // never restore the gated one
-        const el = document.getElementById(id);
-        if (el && data[id]) el.checked = true;
-      });
-      renderSigFeedback();
-      updateSubmitState();
-    } catch (e) {}
-  }
-
-  function collectData() {
-    const d = {};
-    fieldIds.forEach(id => { d[id] = document.getElementById(id).value; });
-    d.vehicleType = vehicleType;
-    d.days = Array.from(days);
-    d.availability = { days: Array.from(days), timeSlot: document.getElementById('timeSlot').value };
-    consentIds.forEach(id => { d[id] = document.getElementById(id).checked; });
-    return d;
-  }
-
-  loadDraft();
-
-  // ---- Submit ----
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    errBanner.classList.remove('show');
-    updateSubmitState();
-    if (submitBtn.disabled) return;
-
-    const payload = collectData();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Enviando…';
-
-    try {
-      const resp = await fetch('/api/apply', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      const out = await resp.json();
-      if (!resp.ok || !out.ok) {
-        throw new Error(out.error || 'submit_failed');
-      }
-      localStorage.removeItem(DRAFT_KEY);
-      showSuccess(out.radicado, payload);
-    } catch (err) {
-      errBanner.textContent = 'No pudimos enviar tu solicitud. Verifica tu conexión e intenta de nuevo.';
-      errBanner.classList.add('show');
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Enviar mi solicitud';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  });
-
-  function showSuccess(radicado, payload) {
-    document.getElementById('formScreen').style.display = 'none';
-    document.getElementById('successScreen').style.display = 'block';
-    document.getElementById('radicadoOut').textContent = radicado;
-    window.scrollTo({ top: 0 });
-
-    document.getElementById('copyDataBtn').addEventListener('click', () => {
-      const text = 'Radicado: ' + radicado + '\nNombre: ' + payload.fullName + '\nDocumento: ' + payload.documentType + ' ' + payload.documentNumber + '\nTeléfono: ' + payload.phone;
-      navigator.clipboard.writeText(text).then(() => {
-        const btn = document.getElementById('copyDataBtn');
-        const old = btn.textContent;
-        btn.textContent = '¡Copiado!';
-        setTimeout(() => { btn.textContent = old; }, 1500);
-      });
-    });
-  }
-})();
+loadDraft();
+syncVeh();
+syncSubmit();
+checkScroll();
 </script>
 
 </body>
