@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRM Domiciliarios — Skipfee</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mint: #56DC85; --mint-dark: #2FB868; --navy: #0B1E31; --navy-soft: #16324D;
+    --bg: #F5FAF7; --card: #FFFFFF; --border: #E1EAE4; --muted: #5C6B66; --danger: #D14343;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Hanken Grotesk', system-ui, sans-serif; background: var(--bg); color: var(--navy); }
+
+  #gate { max-width: 380px; margin: 90px auto; padding: 0 20px; text-align: center; }
+  #gate h1 { font-size: 18px; margin-bottom: 18px; }
+  #gate input {
+    width: 100%; padding: 12px 14px; border-radius: 10px; border: 1.5px solid var(--border);
+    font-size: 15px; font-family: inherit; margin-bottom: 10px;
+  }
+  #gate button {
+    width: 100%; padding: 12px; border: none; border-radius: 10px; background: var(--navy);
+    color: #fff; font-weight: 700; font-size: 14.5px; cursor: pointer; font-family: inherit;
+  }
+  #gate .err { color: var(--danger); font-size: 13px; margin-top: 8px; display: none; }
+
+  #app { display: none; }
+  header { background: var(--navy); color: #fff; padding: 18px 22px; }
+  header .inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  header h1 { margin: 0; font-size: 16px; }
+  header .sub { font-size: 12px; color: #B8C6D6; }
+  .refresh-btn { background: var(--mint); color: var(--navy); border: none; padding: 8px 14px; border-radius: 8px; font-weight: 700; font-size: 12.5px; cursor: pointer; font-family: inherit; }
+
+  main { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 18px; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+  .stat .n { font-size: 22px; font-weight: 800; }
+  .stat .l { font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
+
+  .toolbar { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+  .toolbar input, .toolbar select {
+    padding: 10px 12px; border-radius: 10px; border: 1.5px solid var(--border); font-family: inherit; font-size: 13.5px;
+  }
+  .toolbar input { flex: 1; min-width: 200px; }
+
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  thead th { text-align: left; font-size: 11.5px; text-transform: uppercase; color: var(--muted); background: #F3F8F4; padding: 10px 12px; }
+  tbody td { padding: 11px 12px; font-size: 13.5px; border-top: 1px solid var(--border); }
+  tbody tr { cursor: pointer; }
+  tbody tr:hover { background: #FAFDFB; }
+  .badge { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; background: rgba(86,220,133,0.18); color: var(--mint-dark); }
+  .empty { text-align: center; padding: 40px; color: var(--muted); font-size: 13.5px; }
+
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(11,30,49,0.5); z-index: 20; align-items: flex-start; justify-content: center; padding: 40px 16px; overflow-y: auto; }
+  .overlay.show { display: flex; }
+  .detail-card { background: #fff; border-radius: 14px; max-width: 620px; width: 100%; padding: 24px; }
+  .detail-card h2 { margin: 0 0 4px; font-size: 18px; }
+  .detail-card .close { float: right; background: none; border: none; font-size: 20px; cursor: pointer; color: var(--muted); }
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; margin-top: 16px; }
+  .detail-grid .full { grid-column: 1 / -1; }
+  .detail-grid label { display: block; font-size: 11px; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .detail-grid div.v { font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <h1>CRM Domiciliarios — Skipfee</h1>
+  <input type="password" id="pwInput" placeholder="Clave de acceso">
+  <button id="pwBtn">Entrar</button>
+  <div class="err" id="pwErr">Clave incorrecta.</div>
+</div>
+
+<div id="app">
+  <header>
+    <div class="inner">
+      <div>
+        <h1>CRM Domiciliarios</h1>
+        <div class="sub">Skipfee · MAMACITA Cacao SAS</div>
+      </div>
+      <button class="refresh-btn" id="refreshBtn">Actualizar</button>
+    </div>
+  </header>
+  <main>
+    <div class="stats" id="stats"></div>
+    <div class="toolbar">
+      <input type="text" id="searchInput" placeholder="Buscar por nombre, documento, teléfono o radicado…">
+      <select id="vehicleFilter">
+        <option value="">Todos los vehículos</option>
+        <option value="bici">Bicicleta</option>
+        <option value="moto">Moto</option>
+        <option value="carro">Carro</option>
+        <option value="a_pie">A pie</option>
+      </select>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th><th>Radicado</th><th>Nombre</th><th>Teléfono</th><th>Vehículo</th><th>Pago</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="empty" id="emptyMsg" style="display:none;">Sin solicitudes todavía.</div>
+  </main>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="detail-card" id="detailCard"></div>
+</div>
+
+<script>
+(function () {
+  const SESSION_KEY = 'skipfee_admin_key';
+  let allRows = [];
+
+  const gate = document.getElementById('gate');
+  const app = document.getElementById('app');
+  const pwInput = document.getElementById('pwInput');
+  const pwBtn = document.getElementById('pwBtn');
+  const pwErr = document.getElementById('pwErr');
+
+  async function tryLoad(key) {
+    const resp = await fetch('/api/admin?key=' + encodeURIComponent(key));
+    if (!resp.ok) return null;
+    const out = await resp.json();
+    if (!out.ok) return null;
+    return out.rows;
+  }
+
+  async function attemptLogin(key) {
+    const rows = await tryLoad(key);
+    if (rows === null) {
+      pwErr.style.display = 'block';
+      try { sessionStorage.removeItem(SESSION_KEY); } catch (e) {}
+      return;
+    }
+    try { sessionStorage.setItem(SESSION_KEY, key); } catch (e) {}
+    gate.style.display = 'none';
+    app.style.display = 'block';
+    allRows = rows;
+    render();
+  }
+
+  pwBtn.addEventListener('click', () => attemptLogin(pwInput.value.trim()));
+  pwInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptLogin(pwInput.value.trim()); });
+
+  (function tryAutoLogin() {
+    try {
+      const saved = sessionStorage.getItem(SESSION_KEY);
+      if (saved) attemptLogin(saved);
+    } catch (e) {}
+  })();
+
+  document.getElementById('refreshBtn').addEventListener('click', async () => {
+    try {
+      const key = sessionStorage.getItem(SESSION_KEY);
+      if (!key) return;
+      const rows = await tryLoad(key);
+      if (rows) { allRows = rows; render(); }
+    } catch (e) {}
+  });
+
+  const searchInput = document.getElementById('searchInput');
+  const vehicleFilter = document.getElementById('vehicleFilter');
+  searchInput.addEventListener('input', render);
+  vehicleFilter.addEventListener('change', render);
+
+  const vehicleLabels = { bici: 'Bicicleta', moto: 'Moto', carro: 'Carro', a_pie: 'A pie' };
+  const paymentLabels = { nequi: 'Nequi', daviplata: 'Daviplata', bancolombia: 'Bancolombia', otro_banco: 'Otro banco' };
+
+  function fmtDate(iso) {
+    if (!iso) return '-';
+    const d = new Date(iso);
+    return d.toLocaleDateString('es-CO', { day: '2-digit', month: 'short', year: 'numeric' }) +
+      ' ' + d.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  function render() {
+    const q = searchInput.value.trim().toLowerCase();
+    const vf = vehicleFilter.value;
+    const filtered = allRows.filter(r => {
+      if (vf && r.vehicle_type !== vf) return false;
+      if (!q) return true;
+      const hay = [r.full_name, r.document_number, r.phone, r.radicado].join(' ').toLowerCase();
+      return hay.includes(q);
+    });
+
+    renderStats();
+
+    const tbody = document.getElementById('tbody');
+    tbody.innerHTML = '';
+    document.getElementById('emptyMsg').style.display = filtered.length ? 'none' : 'block';
+
+    filtered.forEach(r => {
+      const tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td>' + fmtDate(r.created_at) + '</td>' +
+        '<td><span class="badge">' + r.radicado + '</span></td>' +
+        '<td>' + escapeHtml(r.full_name) + '</td>' +
+        '<td>' + escapeHtml(r.phone) + '</td>' +
+        '<td>' + (vehicleLabels[r.vehicle_type] || r.vehicle_type) + '</td>' +
+        '<td>' + (paymentLabels[r.payment_method] || r.payment_method || '-') + '</td>';
+      tr.addEventListener('click', () => showDetail(r));
+      tbody.appendChild(tr);
+    });
+  }
+
+  function renderStats() {
+    const total = allRows.length;
+    const byVehicle = {};
+    allRows.forEach(r => { byVehicle[r.vehicle_type] = (byVehicle[r.vehicle_type] || 0) + 1; });
+    const today = new Date().toDateString();
+    const todayCount = allRows.filter(r => r.created_at && new Date(r.created_at).toDateString() === today).length;
+
+    const stats = document.getElementById('stats');
+    stats.innerHTML =
+      statCard(total, 'Total solicitudes') +
+      statCard(todayCount, 'Hoy') +
+      statCard(byVehicle.moto || 0, 'Moto') +
+      statCard(byVehicle.bici || 0, 'Bicicleta') +
+      statCard(byVehicle.carro || 0, 'Carro');
+  }
+  function statCard(n, l) {
+    return '<div class="stat"><div class="n">' + n + '</div><div class="l">' + l + '</div></div>';
+  }
+
+  function escapeHtml(s) {
+    return String(s || '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  }
+
+  const overlay = document.getElementById('overlay');
+  function showDetail(r) {
+    const avail = r.availability || {};
+    const days = Array.isArray(avail.days) ? avail.days.join(', ') : '-';
+    document.getElementById('detailCard').innerHTML =
+      '<button class="close" id="closeDetail">&times;</button>' +
+      '<h2>' + escapeHtml(r.full_name) + '</h2>' +
+      '<div class="sub" style="color:var(--muted);font-size:13px;">' + r.radicado + ' · ' + fmtDate(r.created_at) + '</div>' +
+      '<div class="detail-grid">' +
+        field('Documento', r.document_type + ' ' + r.document_number) +
+        field('Teléfono', r.phone) +
+        field('Email', r.email || '-') +
+        field('Ciudad', r.city || '-') +
+        field('Dirección', (r.address || '-') + (r.neighborhood ? ' · ' + r.neighborhood : '')) +
+        field('Vehículo', vehicleLabels[r.vehicle_type] || r.vehicle_type) +
+        field('Placa', r.plate || '-') +
+        field('Licencia', r.license_number || '-') +
+        field('SOAT vence', r.soat_expiry || '-') +
+        field('Tecnomecánica vence', r.tecnomecanica_expiry || '-') +
+        field('Disponibilidad', days + (avail.timeSlot ? ' · ' + avail.timeSlot : '')) +
+        field('EPS / ARL', (r.eps || '-') + ' / ' + (r.arl || '-')) +
+        field('Contacto emergencia', (r.emergency_contact_name || '-') + ' · ' + (r.emergency_contact_phone || '-')) +
+        field('Pago', (paymentLabels[r.payment_method] || r.payment_method) + ' — ' + r.payment_account) +
+        field('Firma electrónica', r.agreement_signature) +
+        field('Acuerdo aceptado', fmtDate(r.agreement_accepted_at)) +
+      '</div>';
+    overlay.classList.add('show');
+    document.getElementById('closeDetail').addEventListener('click', () => overlay.classList.remove('show'));
+  }
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('show'); });
+
+  function field(label, value) {
+    return '<div><label>' + label + '</label><div class="v">' + escapeHtml(value) + '</div></div>';
+  }
+})();
+</script>
+
+</body>
+</html>
